@@ -1,0 +1,50 @@
+{
+  "name": "dps",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "http://www.example.com/dps",
+  "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "react-test-renderer": "^16.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base-64": "^0.1.0",
+    "bootstrap": "^4.1.1",
+    "font-awesome": "4.7.0",
+    "file-saver": "^2.0.0-rc.4",
+    "formik": "^0.11.11",
+    "i18next": "^11.3.6",
+    "i18next-browser-languagedetector": "^2.2.2",
+    "jwt-decode": "^2.2.0",
+    "keycloak-js": "^4.1.0",
+    "node-sass": "^4.9.4",
+    "react": "^16.6.0",
+    "react-content-loader": "^3.1.2",
+    "react-dom": "^16.6.0",
+    "react-i18next": "^7.8.1",
+    "react-js-pagination": "^3.0.2",
+    "react-router-dom": "4.2.2",
+    "react-scripts": "2.1.1",
+    "react-select": "^1.2.1",
+    "react-toastify": "^4.1.0",
+    "react-transition-group": "2.2.1",
+    "reactstrap": "5.0.0-beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
