@@ -14,6 +14,14 @@ Neither the name of Qualcomm Technologies, Inc. nor the names of its contributor
 
 NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#### Documentation
+[DPS-API-Installation-Guide-1.0.0.pdf](https://github.com/dirbs/Documentation/blob/master/Device-Pairing-Subsystem/DPS-API-Installation-Guide-1.0.0.pdf)<br />
+[DPS-SPA-Installation-Guide-1.0.0.pdf](https://github.com/dirbs/Documentation/blob/master/Device-Pairing-Subsystem/DPS-SPA-Installation-Guide-1.0.0.pdf) <br />
+[DPS-User-Guide-Authority-1.0.0.pdf](https://github.com/dirbs/Documentation/blob/master/Device-Pairing-Subsystem/DPS-User-Guide-Authority-1.0.0.pdf)<br />
+[DPS-User-Guide-MNO-1.0.0.pdf](https://github.com/dirbs/Documentation/blob/master/Device-Pairing-Subsystem/DPS-User-Guide-MNO-1.0.0.pdf)<br />
+
+#### Backend Application Repo
+https://github.com/dirbs/Device-Pairing-Subsystem
 
 ## DPS Front-end
 
