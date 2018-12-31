@@ -1,0 +1,401 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component Render Header correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Header />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <NavbarToggler
+          className="d-lg-none"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </NavbarToggler>,
+        <NavbarBrand
+          href="#"
+          tag="a"
+        >
+          <h5
+            className="navbar-brand-minimized"
+          >
+            DPS
+          </h5>
+          <h5
+            className="navbar-brand-full"
+          >
+            Device Pairing Subsystem
+          </h5>
+        </NavbarBrand>,
+        <NavbarToggler
+          className="d-none"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </NavbarToggler>,
+        <Nav
+          className="ml-auto"
+          navbar={true}
+          tag="ul"
+          vertical={false}
+        >
+          <HeaderDropdown />
+        </Nav>,
+      ],
+      "className": "app-header navbar",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <span
+            className="navbar-toggler-icon"
+          />,
+          "className": "d-lg-none",
+          "onClick": [Function],
+          "tag": "button",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "navbar-toggler-icon",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "span",
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <h5
+              className="navbar-brand-minimized"
+            >
+              DPS
+            </h5>,
+            <h5
+              className="navbar-brand-full"
+            >
+              Device Pairing Subsystem
+            </h5>,
+          ],
+          "href": "#",
+          "tag": "a",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "DPS",
+              "className": "navbar-brand-minimized",
+            },
+            "ref": null,
+            "rendered": "DPS",
+            "type": "h5",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Device Pairing Subsystem",
+              "className": "navbar-brand-full",
+            },
+            "ref": null,
+            "rendered": "Device Pairing Subsystem",
+            "type": "h5",
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <span
+            className="navbar-toggler-icon"
+          />,
+          "className": "d-none",
+          "onClick": [Function],
+          "tag": "button",
+          "type": "button",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "navbar-toggler-icon",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "span",
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <HeaderDropdown />,
+          "className": "ml-auto",
+          "navbar": true,
+          "tag": "ul",
+          "vertical": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "header",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <NavbarToggler
+            className="d-lg-none"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            <span
+              className="navbar-toggler-icon"
+            />
+          </NavbarToggler>,
+          <NavbarBrand
+            href="#"
+            tag="a"
+          >
+            <h5
+              className="navbar-brand-minimized"
+            >
+              DPS
+            </h5>
+            <h5
+              className="navbar-brand-full"
+            >
+              Device Pairing Subsystem
+            </h5>
+          </NavbarBrand>,
+          <NavbarToggler
+            className="d-none"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            <span
+              className="navbar-toggler-icon"
+            />
+          </NavbarToggler>,
+          <Nav
+            className="ml-auto"
+            navbar={true}
+            tag="ul"
+            vertical={false}
+          >
+            <HeaderDropdown />
+          </Nav>,
+        ],
+        "className": "app-header navbar",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <span
+              className="navbar-toggler-icon"
+            />,
+            "className": "d-lg-none",
+            "onClick": [Function],
+            "tag": "button",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "navbar-toggler-icon",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <h5
+                className="navbar-brand-minimized"
+              >
+                DPS
+              </h5>,
+              <h5
+                className="navbar-brand-full"
+              >
+                Device Pairing Subsystem
+              </h5>,
+            ],
+            "href": "#",
+            "tag": "a",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "DPS",
+                "className": "navbar-brand-minimized",
+              },
+              "ref": null,
+              "rendered": "DPS",
+              "type": "h5",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Device Pairing Subsystem",
+                "className": "navbar-brand-full",
+              },
+              "ref": null,
+              "rendered": "Device Pairing Subsystem",
+              "type": "h5",
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <span
+              className="navbar-toggler-icon"
+            />,
+            "className": "d-none",
+            "onClick": [Function],
+            "tag": "button",
+            "type": "button",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "navbar-toggler-icon",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <HeaderDropdown />,
+            "className": "ml-auto",
+            "navbar": true,
+            "tag": "ul",
+            "vertical": false,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "header",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

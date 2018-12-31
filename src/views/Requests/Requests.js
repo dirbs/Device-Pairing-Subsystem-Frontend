@@ -91,7 +91,7 @@ class AddIMSIForm extends Component {
  * Formik HOC
  * @type {React.ComponentType<any>}
  */
-const EnhancedModalForm = withFormik({
+export const EnhancedModalForm = withFormik({
   mapPropsToValues: () => ({
     imsi: '',
     reImsi: ''

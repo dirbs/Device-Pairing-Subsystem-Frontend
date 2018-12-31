@@ -32,8 +32,6 @@ class HeaderDropdown extends Component {
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem header tag="div" className="hide-up-md text-center">Hi, <strong>{((this.props.userDetails || {}).preferred_username || '')}</strong></DropdownItem>
-          {/*<DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>*/}
-          {/*<DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>*/}
           <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i> Logout</DropdownItem>
         </DropdownMenu>
       </Dropdown>

@@ -59,11 +59,11 @@ class BulkStatus extends Component {
               <table className="table table-bordered bulk-table">
                 <tbody>
                 <tr>
-                  <td className="text-left">Total MSISDNs/IMSIs</td>
+                  <th className="text-left">Total MSISDNs/IMSIs</th>
                   <td>{details.response.Total_Records}</td>
                 </tr>
                 <tr className={details.response.Deleted_Record !== 0 ? 'table-danger': ''}>
-                  <td className="text-left">Invalid MSISDNs/IMSIs</td>
+                  <th className="text-left">Invalid MSISDNs/IMSIs</th>
                   <td>{details.response.Deleted_Record} <br/>
                   {details.response.Deleted_Record !== 0 &&
                   <button className="btn-link" onClick={(e)=>{this.updateTokenHOC(downloadBulkFile,details.response.link,e)}}>Click to download</button>
@@ -71,7 +71,7 @@ class BulkStatus extends Component {
                   </td>
                 </tr>
                 <tr>
-                  <td className="text-left">Valid MSISDNs/IMSIs</td>
+                  <th className="text-left">Valid MSISDNs/IMSIs</th>
                   <td>{details.response.Successful_Records}</td>
                 </tr>
                 </tbody>
