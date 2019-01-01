@@ -6,6 +6,7 @@
   "devDependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "jest-mock-axios": "^2.1.11",
     "react-test-renderer": "^16.6.0"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "i18next-browser-languagedetector": "^2.2.2",
     "jwt-decode": "^2.2.0",
     "keycloak-js": "^4.1.0",
+    "ramda": "^0.25.0",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-content-loader": "^3.1.2",
@@ -30,7 +32,9 @@
     "react-select": "^1.2.1",
     "react-toastify": "^4.1.0",
     "react-transition-group": "2.2.1",
-    "reactstrap": "5.0.0-beta"
+    "reactstrap": "^6.5.0",
+    "jest-localstorage-mock": "^2.3.0",
+    "sinon": "^7.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,5 +50,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!/node_modules/",
+      "!src/i18n.js",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
+    ]
+  }
 }

@@ -4,7 +4,6 @@ import {Container} from 'reactstrap';
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
-import Aside from '../../components/Aside/';
 import Footer from '../../components/Footer/';
 import RequestStatus from '../../components/RequestStatus/RequestStatus';
 
@@ -23,15 +22,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 class Full extends Component {
-  constructor(props) {
-    super(props);
-    this.changeLanguage = this.changeLanguage.bind(this);
-  }
-
-  changeLanguage(lng) {
-    const { i18n } = this.props;
-    i18n.changeLanguage(lng);
-  }
 
   render() {
     return (
@@ -80,7 +70,6 @@ class Full extends Component {
               </Switch>
             </Container>
           </main>
-          <Aside />
         </div>
         <Footer />
       </div>

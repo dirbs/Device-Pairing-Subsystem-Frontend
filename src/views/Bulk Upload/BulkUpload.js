@@ -83,7 +83,7 @@ class FileInputForm extends Component {
  * Formik HOC
  * @type {React.ComponentType<any>}
  */
-const EnhancedFileForm = withFormik({
+export const EnhancedFileForm = withFormik({
   mapPropsToValues: () => ({
     file: ""
   }),
