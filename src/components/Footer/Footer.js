@@ -11,13 +11,14 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 */
 
 import React, {Component} from 'react';
+import i18n from './../../i18n';
 
 class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <div>&copy; Copyright 2018 <i>DIRBS</i>. All Rights Reserved.</div>
-        <div><b>Version: </b>1.0.0</div>
+        <div>&copy; {i18n.t('copyRight2018')} <i>{i18n.t('DIRBS')}</i>. {i18n.t('allRightsReserved')}.</div>
+        <div><b>{i18n.t('version')}: </b>1.0.0</div>
       </footer>
     )
   }

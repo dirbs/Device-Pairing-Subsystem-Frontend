@@ -4,7 +4,9 @@ import {
   NavbarToggler,
   NavbarBrand
 } from 'reactstrap';
+import i18n from './../../i18n';
 import HeaderDropdown from './HeaderDropdown';
+import HeaderLanguageDropdown from './HeaderLanguageDropdown';
 
 class Header extends Component {
 
@@ -26,13 +28,14 @@ class Header extends Component {
         </NavbarToggler>
         <NavbarBrand href="#">
             <h5 className="navbar-brand-minimized">DPS</h5>
-            <h5 className="navbar-brand-full">Device Pairing Subsystem</h5>
+            <h5 className="navbar-brand-full">{i18n.t('title')}</h5>
         </NavbarBrand>
         <NavbarToggler className="d-none" onClick={this.sidebarToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
-        <Nav className="ml-auto" navbar>
+        <Nav navbar>
           <HeaderDropdown {...this.props}/>
+          <HeaderLanguageDropdown {...this.props} switchLanguage={this.props.switchLanguage} />
         </Nav>
       </header>
     );

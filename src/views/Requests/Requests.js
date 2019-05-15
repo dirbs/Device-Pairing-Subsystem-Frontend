@@ -10,18 +10,18 @@
 */
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
-import {instance, errors, getAuthHeader, matchMedia, getUserRole} from "../../utilities/helpers";
-import {PAGE_LIMIT} from "../../utilities/constants";
+import {instance, errors, getAuthHeader, getUserRole} from "../../utilities/helpers";
+import {PAGE_LIMIT,ITEMS_PER_PAGE} from "../../utilities/constants";
 import Pagination from "react-js-pagination";
 import FileSaver from "file-saver";
-import {Row, Col, Button, Form, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Row, Col, Button, Form, ModalHeader, ModalBody, ModalFooter,Input,Label} from 'reactstrap';
 import renderInput from '../../components/Form/RenderInput';
 import {withFormik, Field} from 'formik';
 import RenderModal from '../../components/Form/RenderModal'
 import StepLoading from "../../components/Loaders/StepLoading";
 import {toast} from "react-toastify";
 import DataTableInfo from '../../components/DataTable/DataTableInfo'
-
+import 'react-select/dist/react-select.css';
 /**
  * React Modal Component
  * Double entry input form to add IMSI
@@ -150,7 +150,7 @@ class Requests extends Component {
     super(props)
     this.state = {
       mno: '',
-      start: 1,
+      start: 0,
       prevStart: null,
       limit: PAGE_LIMIT,
       activePage: 1,
@@ -159,7 +159,8 @@ class Requests extends Component {
       enableModal: false,
       selectedMsisdn: null,
       countryCode: null,
-      data: null
+      data: null,
+      options: ITEMS_PER_PAGE
     }
     this.handlePageClick = this.handlePageClick.bind(this);
     this.getCases = this.getCases.bind(this);
@@ -168,7 +169,26 @@ class Requests extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
     this.addSingleIMSI = this.addSingleIMSI.bind(this);
+    this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
+
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom - 100 <= window.innerHeight;
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handlePagination);
+  }
+
+  handlePagination = () => {
+    const wrappedElement = document.getElementById('root');
+    if (this.isBottom(wrappedElement)) {
+      document.body.classList.remove('pagination-fixed');
+    } else {
+      document.body.classList.add('pagination-fixed');
+    }
+  };
 
   /**
    * HOC function to update token
@@ -199,7 +219,12 @@ class Requests extends Component {
    * @param page
    */
   handlePageClick(page) {
-    this.setState({start: page, activePage: page, loading: true}, () => {
+    let a1 = 1;
+    let d = this.state.limit;
+    // -1 at the end indicates that start should be always 0 for first page
+   	let start = a1 + d * (page - 1) - 1;
+
+    this.setState({start: start, activePage: page, loading: true}, () => {
       this.updateTokenHOC(this.getCases)
     });
   }
@@ -216,8 +241,36 @@ class Requests extends Component {
         this.setState({
           data: response.data.cases,
           totalCases: response.data.count,
-          countryCode: response.data.Country_Code,
+          countryCode: response.data.country_code,
           loading: false
+        },()=>{
+          let options = []
+          if(this.state.totalCases === 10){
+            options = this.state.options.filter((el)=>{
+              return el.value===10
+            })
+            this.setState({options})
+          } else if (this.state.totalCases > 10 && this.state.totalCases <= 20) {
+            options = this.state.options.filter((el)=>{
+              return el.value<=20
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 20 && this.state.totalCases <= 30){
+            options = this.state.options.filter((el)=>{
+              return el.value<=20
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 30 && this.state.totalCases <= 50){
+            options = this.state.options.filter((el)=>{
+              return el.value<=50
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 50 && this.state.totalCases <= 100){
+            options = this.state.options.filter((el)=>{
+              return el.value<=100
+            })
+            this.setState({options})
+          }
         });
       })
       .catch(error => {
@@ -305,15 +358,28 @@ class Requests extends Component {
       mno: getUserRole(this.props.resources)
     }, () => {
       this.updateTokenHOC(this.getCases)
-    })
+    });
+    document.addEventListener('scroll', this.handlePagination);
+  }
+
+  handleLimitChange = (e) => {
+    e.preventDefault();
+    let limit = parseInt(e.target.value);
+    let currentPage = Math.ceil((this.state.start + 1) / limit);
+    this.setState({limit:limit},()=>{
+      this.handlePageClick(currentPage);
+    });
   }
 
   render() {
-    const {loading} = this.state
+    const {loading,options} = this.state
+    const itemOptions = options.map((item)=>{
+      return <option key={item.value} value={item.value}>{item.label}</option>
+    })
     return (
       <I18n ns="translations">
         {
-          (t, {i18n}) => (
+          (t) => (
             <div className="animated fadeIn steps-loading">
               {loading &&
               <StepLoading/>
@@ -352,36 +418,41 @@ class Requests extends Component {
                 addSingleIMSI={(data) => this.updateTokenHOC(this.addSingleIMSI, data)}
               />
               <div className="react-bs-table-pagination">
-                {
-                  this.state.data &&
+                {this.state.data &&
                   <p>
                     <button className="btn btn-link"
                             onClick={(e) => this.updateTokenHOC(this.downloadRequests, e)}>{t('requests.downloadDocuments')}</button>
                   </p>
                 }
-                <div className="row">
-                  <div className="col-xs-12 col-lg-6 mt-2">
-                    {
-                      this.state.totalCases &&
-                      <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases}
-                                     itemType={'requests'}/>
-                    }
-                  </div>
-                  <div className="col-xs-12 col-lg-6">
-                    { this.state.totalCases > this.state.limit &&
-                      <Pagination
-                        pageRangeDisplayed={matchMedia(1250, 3, 5)}
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={this.state.limit}
-                        totalItemsCount={this.state.totalCases}
-                        onChange={this.handlePageClick}
-                        innerClass="pagination float-right mt-0"
-                      />
-                    }
-                  </div>
-                </div>
               </div>
-              <div className="s-alert-wrapper"></div>
+              {(!loading && this.state.totalCases >= PAGE_LIMIT) &&
+                <article className='data-footer'>
+                  <Pagination
+                    pageRangeDisplayed={window.matchMedia("(max-width: 767px)").matches ? 4 : 10}
+                    activePage={this.state.activePage}
+                    itemsCountPerPage={this.state.limit}
+                    totalItemsCount={this.state.totalCases}
+                    onChange={this.handlePageClick}
+                    innerClass="pagination"
+                  />
+                  <div className="hand-limit">
+                    <Label>Show</Label>
+                    <div className="selectbox">
+                      <Input value={this.state.limit} onChange={(e) => {
+                        this.handleLimitChange(e)
+                      }}
+                             type="select" name="select">
+                        {itemOptions}
+                      </Input>
+                    </div>
+                    <Label>Requests</Label>
+                  </div>
+                  <div className='start-toend'>
+                    <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases}
+                                   itemType={'requests'}/>
+                  </div>
+                </article>
+              }
             </div>
           )
         }

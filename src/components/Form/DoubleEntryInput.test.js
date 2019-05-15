@@ -61,6 +61,7 @@ describe('doubleEntryInput', () => {
         <Field name="test" component={doubleEntryInput} type="text" label="test" placeholder="test" requiredStar />
       </Formik>
     );
+    //console.log(wrapper.debug());
     expect(wrapper.find('label').length).toBe(1);
     expect(wrapper.find('label').text()).toBe('test *');
   })

@@ -5,6 +5,7 @@ import {
   DropdownToggle,
   Dropdown
 } from 'reactstrap';
+import i18n from "../../i18n";
 
 class HeaderDropdown extends Component {
 
@@ -27,12 +28,12 @@ class HeaderDropdown extends Component {
     return (
       <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle} className='dd-itereg'>
         <DropdownToggle nav>
-            Hi, <span className="mr-3 h6 d-inline-block mt-2">{((this.props.userDetails || {}).preferred_username || '')}</span>
+          {i18n.t('hi')} <span className="mr-3 h6 d-inline-block mt-2">{((this.props.userDetails || {}).preferred_username || '')}</span>
           <span className="fa fa-caret-down"></span>
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem header tag="div" className="hide-up-md text-center">Hi, <strong>{((this.props.userDetails || {}).preferred_username || '')}</strong></DropdownItem>
-          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i> Logout</DropdownItem>
+          <DropdownItem header tag="div" className="hide-up-md text-center">{i18n.t('hi')} <strong>{((this.props.userDetails || {}).preferred_username || '')}</strong></DropdownItem>
+          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i> {i18n.t('logOut')}</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

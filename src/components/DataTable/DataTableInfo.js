@@ -11,12 +11,9 @@
 import React from "react";
 
 const DataTableInfo = (props) => {
-	let a1 = 1;
-    let d = props.limit;
-    let start = a1 + d * (props.start - 1);
-    let limitEnd = props.limit + start-1;
-  return (
-      <p className='page-result'>Showing <span>{start} to {limitEnd > props.total ? props.total : limitEnd}</span> of <span>{props.total}</span> {props.itemType}</p>
+    let limitEnd = props.limit + props.start-1 + 1;
+    return (
+      <p className='page-result'>Showing <span>{props.start + 1} to {limitEnd > props.total - 1 ? props.total : limitEnd}</span> of <span>{props.total}</span> {props.itemType}</p>
     )
 };
 export default DataTableInfo;

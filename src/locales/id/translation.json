@@ -1,0 +1,41 @@
+{
+  "title": "DPS - Device Pairing Subsystem",
+  "homeLink": "Rumah",
+  "mainNavigation": "Navigasi Utama",
+  "dashboardLink": "Dasbor",
+  "searchRequestLink": "Permintaan Pencarian",
+  "generatePairCodeLink": "Hasilkan Kode Pasangan",
+  "requestStatusLink": "Status Permintaan",
+  "imsiRequestsLink": "Permintaan IMSI",
+  "bulkUploadLink": "Unggah Massal",
+  "bulkStatusLink": "Status Massal",
+
+  "requests.header": "Permintaan IMSI",
+  "requests.id": "ID Permintaan",
+  "requests.actions": "Tindakan",
+  "requests.addImsi": "Tambahkan IMSI",
+  "requests.addImsiFor": "Tambahkan IMSI untuk:",
+  "requests.downloadDocuments": "Unduh semua dokumen permintaan",
+  "requests.downloadFilename": "Permintaan-Dokumen",
+
+  "modal.addImsi": "Ketikkan IMSI",
+  "modal.imsilabel": "Ketikkan IMSI",
+  "modal.imsiplaceholder": "Ketikkan IMSI",
+  "modal.addreImsi": "Ketik ulang IMSI",
+  "modal.reimsilabel": "Ketik ulang IMSI",
+  "modal.reimsiplaceholder": "Ketik ulang IMSI",
+  "modal.close": "Dekat",
+  "modal.add": "Menambahkan",
+
+  "uploadDocument": "Unggah Dokumen IMSI",
+  "selectIMSIfile": "Pilih file IMSI",
+
+  "submit": "Menyerahkan",
+  "hi": "Hai,",
+  "logOut": "Keluar",
+  "copyRight2018": "Hak Cipta 2018",
+  "DIRBS": "DIRBS",
+  "allRightsReserved": "Seluruh hak cipta",
+  "version": "Versi"
+
+}

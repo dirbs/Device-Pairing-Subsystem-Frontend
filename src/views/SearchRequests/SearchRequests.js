@@ -12,62 +12,101 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 
 import React, { Component } from 'react';
 import { translate, I18n } from 'react-i18next';
-import {Row, Col, Button, Form, FormGroup, Card, CardHeader, CardBody} from 'reactstrap';
+import {Row, Col, Button, Form, Card, CardHeader, CardBody, Label, Input} from 'reactstrap';
 import { withFormik, Field } from 'formik';
 import renderInput from "./../../components/Form/RenderInput";
 import {instance, errors, getAuthHeader } from "../../utilities/helpers";
-import {PAGE_LIMIT} from '../../utilities/constants';
+import {ITEMS_PER_PAGE, PAGE_LIMIT} from '../../utilities/constants';
 import TableLoader from './../../components/Loaders/TableLoader';
 import Pagination from "react-js-pagination";
 import DataTableInfo from '../../components/DataTable/DataTableInfo';
+import SearchFilters from "./SearchFilters";
 
-const SearchForm = props => {
-  const {
-    errors,
-    isSubmitting,
-    handleSubmit,
-    handleReset,
-    dirty,
-  } = props;
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Card body outline className={errors['oneOfFields'] ? 'mb-2 border-danger': 'mb-2'}>
-      <Row className="justify-content-end">
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <Field name="imei" component={renderInput} type="text" label="IMEI" placeholder="IMEI"/>
-        </Col>
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <Field name="serial_no" component={renderInput} type="text" label="Serial Number"
-                 placeholder="Serial Number"/>
-        </Col>
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <Field name="mac" component={renderInput} type="text" label="MAC Address" placeholder="MAC Address"/>
-        </Col>
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <Field name="contact" component={renderInput} type="text" label="Reference MSISDN"
-                 placeholder="Reference MSISDN"/>
-        </Col>
-      </Row>
-      </Card>
-      <Field name="oneOfFields" render={({
-        field, // { name, value, onChange, onBlur }
-        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-        ...props
-      }) => (
-          <div> {errors['oneOfFields'] && <span className="invalid-feedback" style={{display: 'block'}}>* {errors[field.name]}</span>} </div>
-      )} />
-      <Row className="justify-content-end">
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <FormGroup>
-            <Button color="default" onClick={handleReset} disabled={!dirty || isSubmitting} block>Clear Search</Button>
-          </FormGroup>
-        </Col>
-        <Col xs={12} sm={6} md={6} xl={3}>
-          <Button color="primary" type="submit" block disabled={isSubmitting}>Search Requests</Button>
-        </Col>
-      </Row>
-    </Form>
-  )
+class SearchForm extends Component {
+  constructor(props) {
+    super(props);
+    this.handleResetForm = this.handleResetForm.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+  }
+  handleReset(e,val) {
+    e.preventDefault()
+    switch(val){
+      case 'IMEI':
+        this.props.setFieldValue('imei','')
+        this.props.delSearchQuery(this.props.currSearchQuery,val)
+        break;
+      case 'Serial_No':
+        this.props.setFieldValue('serial_no','')
+        this.props.delSearchQuery(this.props.currSearchQuery,val)
+        break;
+      case 'MAC':
+        this.props.setFieldValue('mac','')
+        this.props.delSearchQuery(this.props.currSearchQuery,val)
+        break;
+      case 'CONTACT':
+        this.props.setFieldValue('contact','')
+        this.props.delSearchQuery(this.props.currSearchQuery,val)
+        break;
+      default:
+        break;
+    }
+  }
+  handleResetForm(){
+    this.props.resetForm()
+    this.props.delSearchQuery(this.props.currSearchQuery,'all')
+  }
+  render() {
+    const {
+      errors,
+      isSubmitting,
+      handleSubmit,
+      dirty,
+      currSearchQuery
+    } = this.props;
+
+    return(
+      <Form onSubmit={handleSubmit}>
+        {(currSearchQuery.length > 0) && <div>
+          <div className='selected-filters-header'>
+            <Button color="link" onClick={() => { this.handleResetForm(); }} disabled={!dirty || isSubmitting}>Clear All</Button>
+          </div>
+          <SearchFilters filters={currSearchQuery} handleReset={this.handleReset} />
+          <hr />
+        </div>}
+
+        <Card body outline className={errors['oneOfFields'] ? 'mb-2 border-danger': 'mb-2'}>
+        <Row className="justify-content-end">
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Field name="imei" component={renderInput} type="text" label="IMEI" placeholder="IMEI"/>
+          </Col>
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Field name="serial_no" component={renderInput} type="text" label="Serial Number"
+                   placeholder="Serial Number"/>
+          </Col>
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Field name="mac" component={renderInput} type="text" label="MAC Address" placeholder="MAC Address"/>
+          </Col>
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Field name="contact" component={renderInput} type="text" label="Reference MSISDN"
+                   placeholder="Reference MSISDN"/>
+          </Col>
+        </Row>
+        </Card>
+        <Field name="oneOfFields" render={({
+          field, // { name, value, onChange, onBlur }
+          form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+          ...props
+        }) => (
+            <div> {errors['oneOfFields'] && <span className="invalid-feedback" style={{display: 'block'}}>* {errors[field.name]}</span>} </div>
+        )} />
+        <Row className="justify-content-end">
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Button color="primary" type="submit" block disabled={isSubmitting}>Search Requests</Button>
+          </Col>
+        </Row>
+      </Form>
+    );
+  }
 }
 
 const MyEnhancedForm = withFormik({
@@ -85,6 +124,7 @@ const MyEnhancedForm = withFormik({
   handleSubmit: (values, bag) => {
     bag.setSubmitting(false);
     bag.props.callServer(prepareAPIRequest(values));
+    bag.props.searchQuery(prepareAPIRequest(values));
   },
 
   displayName: 'SearchForm', // helps with React DevTools
@@ -112,20 +152,47 @@ class SearchRequests extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      start: 1,
+      start: 0,
       limit: PAGE_LIMIT,
       data: null,
       loading: false,
       activePage: 1,
       totalCases: 0,
       searchQuery: {},
-      apiFetched: false
+      apiFetched: false,
+      currSearchQuery: [],
+      options: ITEMS_PER_PAGE
     }
     this.getSearchRequestsFromServer = this.getSearchRequestsFromServer.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
     this.saveSearchQuery = this.saveSearchQuery.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
+    this.setSearchQuery = this.setSearchQuery.bind(this);
+    this.delSearchQuery = this.delSearchQuery.bind(this);
+    this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
+
+	isBottom(el) {
+		return el.getBoundingClientRect().bottom - 100 <= window.innerHeight;
+	}
+
+	componentDidMount() {
+		document.addEventListener('scroll', this.handlePagination);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('scroll', this.handlePagination);
+	}
+
+	handlePagination = () => {
+		const wrappedElement = document.getElementById('root');
+		if (this.isBottom(wrappedElement)) {
+			document.body.classList.remove('pagination-fixed');
+		} else {
+			document.body.classList.add('pagination-fixed');
+		}
+	};
 
   updateTokenHOC(callingFunc) {
       let config = null;
@@ -148,18 +215,28 @@ class SearchRequests extends Component {
   }
 
   saveSearchQuery(values) {
-    this.setState({ searchQuery: values, loading: true, data: null, apiFetched: true, start: 1, activePage: 1} , () => {
+    this.setState({ searchQuery: values, loading: true, data: null, apiFetched: true, start: 0, activePage: 1} , () => {
 	  this.updateTokenHOC(this.getSearchRequestsFromServer);
 	})
   }
   handlePageClick(page) {
-    //let a1 = 1;
-    //let d = this.state.limit;
-   	//let start = a1 + d * (page - 1);
+    let a1 = 1;
+    let d = this.state.limit;
+    // -1 at the end indicates that start should be always 0 for first page
+   	let start = a1 + d * (page - 1) - 1;
 
-	this.setState({start: page, activePage: page, loading: true}, () => {
+	this.setState({start: start, activePage: page, loading: true}, () => {
 	  this.updateTokenHOC(this.getSearchRequestsFromServer);
 	});
+  }
+
+  handleLimitChange = (e) => {
+    e.preventDefault();
+    let limit = parseInt(e.target.value);
+    let currentPage = Math.ceil((this.state.start + 1) / limit);
+    this.setState({limit:limit},()=>{
+      this.handlePageClick(currentPage);
+    });
   }
 
   getSearchRequestsFromServer(config) {
@@ -185,9 +262,65 @@ class SearchRequests extends Component {
               errors(this, error);
           })
   }
+  setSearchQuery(values){
+    let query = []
+    Object.keys(values).map(key=>{
+      //if(key!=='request_type'){
+        switch(key){
+          case 'IMEI':
+            query.push({filter:key,filterName:'IMEI',value: values[key]})
+            break;
+          case 'Serial_No':
+            query.push({filter:key,filterName:'Serial Number',value: values[key]})
+            break;
+          case 'MAC':
+            query.push({filter:key,filterName:'MAC Address',value: values[key]})
+            break;
+          case 'CONTACT':
+            query.push({filter:key,filterName:'Reference MSISDN',value: values[key]})
+            break;
+           default:
+            break;
+        }
+      //}
+      return ''
+    })
+    this.setState({
+      currSearchQuery: query
+    })
+  }
+  delSearchQuery(filters,filter){
+    let searchQuery = this.state.searchQuery;
+    if(filter==='all'){
+      this.setState({
+        currSearchQuery: [],
+        searchQuery:{}
+      }, () => {
+        this.updateTokenHOC(this.getSearchRequestsFromServer)
+      })
+    } else {
+      let query = filters.filter((el)=>{
+        return el.filter !== filter
+      })
+      delete searchQuery[filter];
+      console.log(query);
+      this.setState({
+        searchQuery,
+        currSearchQuery: query
+      }, () => {
+        if(query.length > 0) {
+          this.updateTokenHOC(this.getSearchRequestsFromServer)
+        }
+      })
+    }
+  }
 
   render() {
     let searched_requests = null;
+    const {options} = this.state
+    const itemOptions = options.map((item)=>{
+      return <option key={item.value} value={item.value}>{item.label}</option>
+    })
     if(((this.state.data || {}).cases || []).length > 0) {
       searched_requests = this.state.data.cases.map((searched_request) => {
           return (
@@ -215,7 +348,11 @@ class SearchRequests extends Component {
                     <b>Search Filters</b>
                   </CardHeader>
                   <CardBody>
-                    <MyEnhancedForm callServer={this.saveSearchQuery}/>
+                    <MyEnhancedForm callServer={this.saveSearchQuery}
+                    searchQuery={this.setSearchQuery} 
+                    delSearchQuery={this.delSearchQuery} 
+                    currSearchQuery={this.state.currSearchQuery}
+                    handleResetFilters={this.handleReset}/>
                   </CardBody>
                 </Card>
               </div>
@@ -263,22 +400,33 @@ class SearchRequests extends Component {
                         : null
               }
               </ul>
-              {(!this.state.loading && (((this.state.data || {}).cases || []).length > 0 && this.state.totalCases > PAGE_LIMIT) &&
-              <Row>
-                <Col xs={12} lg={6}>
-                  <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases} itemType={'requests'}/>
-                </Col>
-                <Col xs={12} lg={6}>
-                  <Pagination
-                    pageRangeDisplayed={window.matchMedia("(max-width: 767px)").matches ? 4 : 10}
-                    activePage={this.state.activePage}
-                    itemsCountPerPage={this.state.limit}
-                    totalItemsCount={this.state.totalCases}
-                    onChange={this.handlePageClick}
-                    innerClass="pagination float-right"
-                  />
-                </Col>
-              </Row>) || <div className="mb-3"></div>}
+	            {(((this.state.data || {}).cases || []).length > 0 && this.state.totalCases > PAGE_LIMIT && !(this.state.loading)) &&
+		            <article className='data-footer'>
+			            <Pagination
+				            pageRangeDisplayed={window.matchMedia("(max-width: 767px)").matches ? 4 : 10}
+				            activePage={this.state.activePage}
+				            itemsCountPerPage={this.state.limit}
+				            totalItemsCount={this.state.totalCases}
+				            onChange={this.handlePageClick}
+				            innerClass="pagination"
+			            />
+			            <div className="hand-limit">
+				            <Label>Show</Label>
+				            <div className="selectbox">
+					            <Input value={this.state.limit} onChange={(e) => {
+						            this.handleLimitChange(e)
+					            }}
+					                   type="select" name="select">
+						            {itemOptions}
+					            </Input>
+				            </div>
+				            <Label>Requests</Label>
+			            </div>
+			            <div className='start-toend'>
+				            <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases} itemType={'requests'}/>
+			            </div>
+		            </article>
+	            }
             </div>
           )
         }

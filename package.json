@@ -34,7 +34,8 @@
     "react-transition-group": "2.2.1",
     "reactstrap": "^6.5.0",
     "jest-localstorage-mock": "^2.3.0",
-    "sinon": "^7.1.1"
+    "sinon": "^7.1.1",
+    "react-helmet": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

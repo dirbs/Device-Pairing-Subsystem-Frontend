@@ -37,6 +37,7 @@ describe('Header dropdown component', () => {
   test('render username correctly', () => {
     const mockLogout = Sinon.spy();
     const wrapper = mount(<HeaderDropdown kc={{logout: mockLogout}} userDetails={userDetails} />);
+    //console.log(wrapper.debug());
     expect(wrapper.contains(<span className="mr-3 h6 d-inline-block mt-2">User</span>)).toBe(true);
   });
   

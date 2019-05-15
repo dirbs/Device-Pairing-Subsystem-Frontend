@@ -1,0 +1,41 @@
+{
+  "title": "DPS - Device Pairing Subsystem",
+  "homeLink": "Casa",
+  "mainNavigation": "Navegación Principal",
+  "dashboardLink": "Tablero",
+  "searchRequestLink": "Solicitud de búsqueda",
+  "generatePairCodeLink": "Generar código de par",
+  "requestStatusLink": "Estado de la solicitud",
+  "imsiRequestsLink": "Solicitudes IMSI",
+  "bulkUploadLink": "Carga masiva",
+  "bulkStatusLink": "Estado a granel",
+
+  "requests.header": "Solicitudes IMSI",
+  "requests.id": "ID de solicitud",
+  "requests.actions": "Comportamiento",
+  "requests.addImsi": "Añadir IMSI",
+  "requests.addImsiFor": "Añadir IMSI para:",
+  "requests.downloadDocuments": "Descargar todo el documento de solicitudes",
+  "requests.downloadFilename": "Solicitud de documentos",
+
+  "modal.addImsi": "Tipo IMSI",
+  "modal.imsilabel": "Tipo IMSI",
+  "modal.imsiplaceholder": "Tipo IMSI",
+  "modal.addreImsi": "Vuelva a escribir IMSI",
+  "modal.reimsilabel": "Vuelva a escribir IMSI",
+  "modal.reimsiplaceholder": "Vuelva a escribir IMSI",
+  "modal.close": "Cerrar",
+  "modal.add": "Añadir",
+
+  "uploadDocument": "Subir documento IMSI",
+  "selectIMSIfile": "Seleccione el archivo IMSI",
+
+  "submit": "Enviar",
+  "hi": "Hola,",
+  "logOut": "Cerrar sesión",
+  "copyRight2018": "Copyright 2018",
+  "DIRBS": "DIRBS",
+  "allRightsReserved": "Todos los derechos reservados",
+  "version": "Versión"
+
+}

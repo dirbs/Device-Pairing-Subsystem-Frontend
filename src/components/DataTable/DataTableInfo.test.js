@@ -54,13 +54,13 @@ describe('DataTableInfo', () => {
   /* Test requests limit should be test */
   test('request limit should be used', () => {
     const pageInfo = {
-      start: 1,
+      start: 0,
       limit: 10,
       total: 47,
       itemType: 'requests'
     }
     const wrapper = mount(<DataTableInfo start={pageInfo.start} limit={pageInfo.limit} total={pageInfo.total} itemType={pageInfo.itemType} />);
-    expect(wrapper.find('span').at(0).text()).toBe((pageInfo.start) + ' to ' + (pageInfo.limit).toString());
+    expect(wrapper.find('span').at(0).text()).toBe((pageInfo.start + 1) + ' to ' + (pageInfo.limit).toString());
   });
 
-})
+});

@@ -1,0 +1,41 @@
+{
+  "title": "Device Pairing Subsystem",
+  "homeLink": "Home",
+  "mainNavigation": "Main Navigation",
+  "dashboardLink": "Dashboard",
+  "searchRequestLink": "Search Request",
+  "generatePairCodeLink": "Generate Pair Code",
+  "requestStatusLink": "Request Status",
+  "imsiRequestsLink": "IMSI Requests",
+  "bulkUploadLink": "Bulk Upload",
+  "bulkStatusLink": "Bulk Status",
+
+  "requests.header": "IMSI Requests",
+  "requests.id": "Request ID",
+  "requests.actions": "Actions",
+  "requests.addImsi": "Add IMSI",
+  "requests.addImsiFor": "Add IMSI for:",
+  "requests.downloadDocuments": "Download all requests document",
+  "requests.downloadFilename": "Request-Documents",
+
+  "modal.addImsi": "Type IMSI",
+  "modal.imsilabel": "Type IMSI",
+  "modal.imsiplaceholder": "Type IMSI",
+  "modal.addreImsi": "Retype IMSI",
+  "modal.reimsilabel": "Retype IMSI",
+  "modal.reimsiplaceholder": "Retype IMSI",
+  "modal.close": "Close",
+  "modal.add": "Add",
+
+  "uploadDocument": "Upload IMSI Document",
+  "selectIMSIfile": "Select IMSI file",
+
+  "submit": "Submit",
+  "hi": "Hi,",
+  "logOut": "Logout",
+  "copyRight2018": "Copyright 2018",
+  "DIRBS": "DIRBS",
+  "allRightsReserved": "All Rights Reserved",
+  "version": "Version"
+
+}

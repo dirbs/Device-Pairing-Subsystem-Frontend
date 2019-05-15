@@ -59,7 +59,7 @@ describe('SearchRequests component', () => {
     );
     const searchForm = wrapper.find('Form');
     expect(searchForm.find('renderInput').length).toEqual(4);
-    expect(searchForm.find('Button')).toHaveLength(2);
+    expect(searchForm.find('Button')).toHaveLength(1);
   });
 
   /* Test error message one of the above fields is required */
@@ -95,6 +95,7 @@ describe('SearchRequests component', () => {
       </I18nextProvider>
     );
     const PAGE_LIMIT = 10;
+    //console.log(wrapper.debug());
     expect(wrapper.find('SearchRequests').state().apiFetched).toBe(false)
     expect(wrapper.find('SearchRequests').state().loading).toBe(false)
     expect(wrapper.find('SearchRequests').state().totalCases).toBe(0)
@@ -105,45 +106,15 @@ describe('SearchRequests component', () => {
   /* Test form clear button works correctly */
   test('form should have contains clear button and works', () => {
     const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <SearchRequests kc={mockKcProps} />
-      </I18nextProvider>
-    );
-    const form = wrapper.find('Form');
-    const buttonclear = form.find('Button').at(0);
-    expect(buttonclear.find('button').props().disabled).toEqual(true);
-
-    const imei = form.find('renderInput').at(0);
-    imei.find('Input').simulate('change', {
-      target: {
-        value: '11111111111111',
-        name: 'imei'
-      }
-    });
-    wrapper.update();
-    const updateForm = wrapper.find('Form');
-    const updateButton = updateForm.find('Button').at(0);
-    expect(updateButton.find('button').props().disabled).toBe(false);
-
-    updateButton.simulate('click');
-    wrapper.update();
-    const updateForm2 = wrapper.find('Form');
-    const updateImei = updateForm2.find('renderInput').at(0);
-    expect(updateImei.find('Input').props().value).toEqual('');
-
-  })
-
-  test("if search button clicked then call API and show records", () => {
-    const wrapper = mount(
       <Router>
         <I18nextProvider i18n={i18n}>
           <SearchRequests kc={mockKcProps} />
         </I18nextProvider>
       </Router>
-    )
+    );
 
-    const form = wrapper.find('Form');
-    const imei = form.find('renderInput').at(0);
+    let form = wrapper.find('Form');
+    let imei = form.find('renderInput').at(0);
     imei.find('Input').simulate('change', {
       target: {
         value: '11111111111111',
@@ -151,7 +122,7 @@ describe('SearchRequests component', () => {
       }
     });
 
-    const submitButton = wrapper.find('Button').at(1).find('button');
+    const submitButton = wrapper.find('Button').at(0).find('button');
     submitButton.simulate('submit');
 
     // simulating a server response
@@ -173,16 +144,73 @@ describe('SearchRequests component', () => {
         limit: 10,
         start: 1
       }
-    }
+    };
 
     mockAxios.mockResponse(responseObj);
     wrapper.update();
-    expect(mockAxios.post).toHaveBeenCalledWith('/authority-search?start=1&limit=10', {
+    expect(wrapper.find('.selected-filters li')).toHaveLength(1);
+    form = wrapper.find('Form');
+    const clearButton = form.find('Button').at(0);
+    expect(clearButton.find('button').props().disabled).toBe(false);
+
+    clearButton.simulate('click');
+    wrapper.update();
+    form = wrapper.find('Form');
+    imei = form.find('renderInput').at(0);
+    expect(imei.find('Input').props().value).toEqual('');
+    expect(wrapper.find('.selected-filters')).toHaveLength(0);
+  });
+
+  test("if search button clicked then call API and show records", () => {
+    const wrapper = mount(
+      <Router>
+        <I18nextProvider i18n={i18n}>
+          <SearchRequests kc={mockKcProps} />
+        </I18nextProvider>
+      </Router>
+    );
+
+    const form = wrapper.find('Form');
+    const imei = form.find('renderInput').at(0);
+    imei.find('Input').simulate('change', {
+      target: {
+        value: '11111111111111',
+        name: 'imei'
+      }
+    });
+
+    const submitButton = wrapper.find('Button').at(0).find('button');
+    submitButton.simulate('submit');
+
+    // simulating a server response
+    let responseObj = {
+      data: {
+        cases: [
+          {
+            pair_code: "dm9Y6JY5",
+            imei: "11111111111111",
+            brand: "TEST",
+            model: "MODEL test",
+            serial_no: "12234abcdef11",
+            mac: "3D-2F-AB-4A-7C:FD",
+            contact: "923145309688",
+            is_active: "Used"
+          }
+        ],
+        count: 1,
+        limit: 10,
+        start: 1
+      }
+    };
+
+    mockAxios.mockResponse(responseObj);
+    wrapper.update();
+    expect(mockAxios.post).toHaveBeenCalledWith('/authority-search?start=0&limit=10', {
       "limit": 10,
       "search_args": {
         "IMEI": '11111111111111'
       },
-      "start": 1
+      "start": 0
     }, mockHeader);
     expect(wrapper.find('SearchRequests').state().totalCases).toEqual(1);
     expect(wrapper.find('SearchRequests').find('.listbox table')).toHaveLength(1);
@@ -190,4 +218,4 @@ describe('SearchRequests component', () => {
     expect(wrapper.find('.listbox .text-primary').text()).toEqual('1 Request found');
   });
   
-})
+});

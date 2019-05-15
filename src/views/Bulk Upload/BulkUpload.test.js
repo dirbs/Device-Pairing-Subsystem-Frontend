@@ -118,6 +118,7 @@ describe('Bulk upload module', () => {
     wrapper.find('form').simulate('submit')
 
     //Test
+    // console.log(wrapper.find('Formik').state())
     expect(wrapper.find('Formik').state().errors.file).toEqual('Invalid file extension, only support "csv"')
 
     //Setting file
@@ -132,6 +133,7 @@ describe('Bulk upload module', () => {
     wrapper.find('form').simulate('submit')
 
     //Test
+    // console.log(wrapper.find('Formik').state())
     expect(wrapper.find('Formik').state().errors.file).toEqual('This field is required')
 
     //Setting file
