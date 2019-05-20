@@ -12,12 +12,14 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import settings from './settings'
 
 //Translations Import
 import translationEN from './locales/en/translation.json';
 import translationES from './locales/es/translation.json';
 import translationID from './locales/id/translation.json';
- 
+
+const { defaultLanguage } = settings.appDetails;
 i18n
   .use(LanguageDetector)
   .init({
@@ -51,5 +53,6 @@ i18n
       wait: true
     }
   });
- 
+
+i18n.changeLanguage(defaultLanguage);
 export default i18n;
