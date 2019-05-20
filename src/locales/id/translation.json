@@ -36,6 +36,12 @@
   "copyRight2018": "Hak Cipta 2018",
   "DIRBS": "DIRBS",
   "allRightsReserved": "Seluruh hak cipta",
-  "version": "Versi"
-
+  "version": "Versi",
+  "button.ok": "Baik",
+  "error": "Kesalahan",
+  "serverNotResponding": "Server Tidak Menanggapi",
+  "sessionExpired":"Sesi berakhir",
+  "credentialMatch": "Pencocokan Kredensial",
+  "validation.langError": "Bahasa tidak didukung",
+  "unprocessibleEntity" : "Entitas yang tidak dapat diproses"
 }

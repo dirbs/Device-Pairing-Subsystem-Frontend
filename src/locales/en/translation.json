@@ -36,6 +36,13 @@
   "copyRight2018": "Copyright 2018",
   "DIRBS": "DIRBS",
   "allRightsReserved": "All Rights Reserved",
-  "version": "Version"
-
+  "version": "Version",
+  "button.ok": "Ok",
+  "error": "Error",
+  "serverNotResponding": "Server Not Responding",
+  "sessionExpired":"Session Expired",
+  "credentialMatch": "Credential Match",
+  "wrongHttp" : "Wrong Http",
+  "validation.langError": "Unsupported Language",
+  "unprocessibleEntity" : "Unprocessible Entity"
 }
