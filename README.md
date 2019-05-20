@@ -63,7 +63,8 @@ cd src/settings.json
   "appDetails": {
     "appName": "APP_NAME", // configure Application name, make sure that this appName must be same as mentioned in Keycloak roles, e.g. dps_authority
     "supportEmail": "support@example.com", // configure this email as it will be visible for unauthorized user
-    "supportNumber": "+923001234567" // // configure this contact number as it will be visible for unauthorized user
+    "supportNumber": "+923001234567", // // configure this contact number as it will be visible for unauthorized user
+    "defaultLanguage": "en"
   },
   "api": {
     "host": "http://SERVER_IP", // Configure API Host e.g. http://www.api-example.com
