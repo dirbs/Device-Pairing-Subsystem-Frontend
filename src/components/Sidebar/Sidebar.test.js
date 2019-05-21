@@ -4,15 +4,11 @@ import Sidebar from './Sidebar';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './../../i18nTest';
 
-const location = {
-  pathname: '/generate-pair-code/'
-};
-
 describe('Sidebar component', () => {
 
   /* Test if Sidebar renders successfully */
   test('If Sidebar renders successfully', () => {
-    const wrapper = shallow(<Sidebar t={() => ''}  location={location} />);
+    const wrapper = shallow(<Sidebar />);
     expect(wrapper.exists()).toBe(true);
   });
 
@@ -20,9 +16,10 @@ describe('Sidebar component', () => {
   test('If nav item consists of length', () => {
     const wrapper = mount(
       <I18nextProvider i18n={i18n}>
-        <Sidebar t={() => ''}  location={location}/>
+        <Sidebar />
       </I18nextProvider>
       );
+    //console.log(wrapper.debug());
     expect(wrapper.find('NavItem').exists()).toBe(true);
   });
 
@@ -30,7 +27,7 @@ describe('Sidebar component', () => {
   test('should have sidebar, sidebar-nav classes and ul listing', () => {
     const wrapper = mount(
       <I18nextProvider i18n={i18n}>
-        <Sidebar t={() => ''}  location={location}/>
+        <Sidebar />
       </I18nextProvider>
     );
     expect(wrapper.find('.sidebar').length).toEqual(1);
