@@ -36,13 +36,6 @@
   "copyRight2018": "Copyright 2018",
   "DIRBS": "DIRBS",
   "allRightsReserved": "Todos los derechos reservados",
-  "version": "Versión",
-  "button.ok": "De acuerdo",
-  "error": "Error",
-  "serverNotResponding": "Servidor no responde",
-  "sessionExpired":"Sesión expirada",
-  "credentialMatch": "Coincidencia de credenciales",
-  "wrongHttp" : "HTTP incorrecto",
-  "validation.langError": "Idioma no soportado",
-  "unprocessibleEntity" : "Entidad no procesable"
+  "version": "Versión"
+
 }
