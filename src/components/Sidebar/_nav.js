@@ -21,12 +21,12 @@ export default {
         icon: 'fa fa-file-text-o',
         url: '/bulk-upload'
     },
-    // {
-    //     id: 3,
-    //     name: 'generatePairCodeLink',
-    //     url: '/generate-pair-code',
-    //     icon: 'fa fa-file-code-o',
-    // },
+    {
+        id: 3,
+        name: 'generatePairCodeLink',
+        url: '/generate-pair-code',
+        icon: 'fa fa-file-code-o',
+    },
     {
         id: 4,
         name: 'searchRequestLink',
