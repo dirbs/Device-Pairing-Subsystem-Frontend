@@ -62,5 +62,12 @@ describe('Header component',() => {
     expect(document.body.classList.contains('sidebar-hidden'))
   });
 
+  /* Test if logout function works */
+  test('If Logout button clicks',() => {
+    const mockLogout = jest.fn();
+    const wrapper = mount(<Header kc={{logout: mockLogout}} userDetails={userDetails} />);
+    wrapper.find('.dropdown-menu button').simulate('click')
+    expect(mockLogout.mock.calls.length).toEqual(1)
+  });
 
 })

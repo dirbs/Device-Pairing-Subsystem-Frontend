@@ -27,53 +27,97 @@ import './scss/style.scss'
 // Temp fix for reactstrap
 import './scss/core/_dropdown-menu-right.scss'
 
-import {getUserGroups, isPage401} from "./utilities/helpers";
+import {getUserGroups, isPage401, displayUsername, role, kcUse, kcRealm, kcClientId, KC_URL} from "./utilities/helpers";
 import Keycloak from 'keycloak-js';
 import decode from 'jwt-decode'
 import Base64 from 'base-64';
 import Page401 from "./views/Errors/Page401";
 
-let kc = Keycloak('./keycloak.json');
+// Keycloak('./keycloak.json');
+let kc = '', userInfo = '', tokenDetails = '';
+if(kcUse) {
+	kc = Keycloak({
+			url: KC_URL,
+			realm: kcRealm,
+			clientId: kcClientId
+	});
+} else {
+	kc = {
+		logout : () => {
+	
+		},
+		isTokenExpired: () => {
+	
+		}
+	}
+	userInfo = {
+		"sub":"e9ecd2ec-8fbe-46d0-bcd8-b0348d459d60",
+		"email_verified":false,
+		"preferred_username": displayUsername
+	}
+	
+	tokenDetails =  {
+		 "realm_access": {
+				"roles": [
+					role,
+					"uma_authorization"
+				]
+			}
+	}
+}
 
 /**
  * Code below adds Keycloak functionality and redirect loggedin user to either Application or 401 Authorized Page.
  * It uses keycloak.json configuration file downloaded from Keycloak.
  */
-kc.init({onLoad: 'login-required'}).success(authenticated => {
-	if (authenticated) {
-		localStorage.setItem('token', kc.token);
-        let tokenDetails = decode(kc.token)
-	  	let groups = getUserGroups(tokenDetails);
-		var pageStatus = isPage401(groups);
-		if(pageStatus) { // is Page401 then show page401
-			kc.loadUserInfo().success(function (userInfo) {
+
+if(!kcUse) {
+	ReactDOM.render((
+		<I18nextProvider i18n={ i18n }>
+			<HashRouter>
+			<Switch>
+				<Route path="/" render={(props) => <Full kc={kc} userDetails={userInfo} resources={tokenDetails} {...props} /> } />
+			</Switch>
+			</HashRouter>
+		</I18nextProvider>
+	), document.getElementById('root'));
+} else {
+	kc.init({onLoad: 'login-required'}).success(authenticated => {
+		if (authenticated) {
+			localStorage.setItem('token', kc.token);
+					let tokenDetails = decode(kc.token)
+				let groups = getUserGroups(tokenDetails);
+			var pageStatus = isPage401(groups);
+			if(pageStatus) { // is Page401 then show page401
+				kc.loadUserInfo().success(function (userInfo) {
+						ReactDOM.render((
+							<I18nextProvider i18n={ i18n }>
+								<HashRouter>
+								<Switch>
+									<Route path="/" render={(props) => <Page401 kc={kc} userDetails={userInfo} {...props} /> } />
+								</Switch>
+								</HashRouter>
+							</I18nextProvider>
+						), document.getElementById('root'));
+					});
+			} else { // User has permission and therefore, allowed to access it.
+				kc.loadUserInfo().success(function (userInfo) {
+					localStorage.setItem('userInfo', Base64.encode(JSON.stringify(userInfo)))
 					ReactDOM.render((
-					  <I18nextProvider i18n={ i18n }>
-						  <HashRouter>
+						<I18nextProvider i18n={ i18n }>
+							<HashRouter>
 							<Switch>
-								<Route path="/" render={(props) => <Page401 kc={kc} userDetails={userInfo} {...props} /> } />
+								<Route path="/" render={(props) => <Full kc={kc} userDetails={userInfo} resources={tokenDetails} {...props} /> } />
 							</Switch>
-						  </HashRouter>
-					  </I18nextProvider>
+							</HashRouter>
+						</I18nextProvider>
 					), document.getElementById('root'));
 				});
-		} else { // User has permission and therefore, allowed to access it.
-			kc.loadUserInfo().success(function (userInfo) {
-				localStorage.setItem('userInfo', Base64.encode(JSON.stringify(userInfo)))
-				ReactDOM.render((
-				  <I18nextProvider i18n={ i18n }>
-					  <HashRouter>
-						<Switch>
-							<Route path="/" render={(props) => <Full kc={kc} userDetails={userInfo} resources={tokenDetails} {...props} /> } />
-						</Switch>
-					  </HashRouter>
-				  </I18nextProvider>
-				), document.getElementById('root'));
-			});
+			}
+		} else {
+			kc.login();
 		}
-	} else {
-		kc.login();
-	}
-}).error(function() {
-	alert('Keycloak configuration issue, please refer to Keycloak Documentation');
-});
+	}).error(function() {
+		alert('Keycloak configuration issue, please refer to Keycloak Documentation');
+	});
+}
