@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import i18n from './../../i18n';
 import HeaderDropdown from './HeaderDropdown';
+import HeaderLanguageDropdown from './HeaderLanguageDropdown';
 
 class Header extends Component {
 
@@ -34,6 +35,7 @@ class Header extends Component {
         </NavbarToggler>
         <Nav navbar>
           <HeaderDropdown {...this.props}/>
+          <HeaderLanguageDropdown {...this.props} switchLanguage={this.props.switchLanguage} />
         </Nav>
       </header>
     );
