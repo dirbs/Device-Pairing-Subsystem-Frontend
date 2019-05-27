@@ -75,20 +75,20 @@ class SearchForm extends Component {
         </div>}
 
         <Card body outline className={errors['oneOfFields'] ? 'mb-2 border-danger': 'mb-2'}>
-        <Row >
+        <Row className="justify-content-end">
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="imei" component={renderInput} type="text" label="IMEI" placeholder="Enter IMEI"/>
+            <Field name="imei" component={renderInput} type="text" label="IMEI" placeholder="IMEI"/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="imsi" component={renderInput} type="text" label="IMSI" placeholder="Enter IMSI"/>
+            <Field name="serial_no" component={renderInput} type="text" label="Serial Number"
+                   placeholder="Serial Number"/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="msisdn" component={renderInput} type="text" label="MSISDN"
-                   placeholder="Enter MSISDN"/>
+            <Field name="mac" component={renderInput} type="text" label="MAC Address" placeholder="MAC Address"/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <label>&nbsp;</label>
-            <Button color="primary" type="submit" block disabled={isSubmitting}>Search Requests</Button>
+            <Field name="contact" component={renderInput} type="text" label="Reference MSISDN"
+                   placeholder="Reference MSISDN"/>
           </Col>
         </Row>
         </Card>
@@ -99,18 +99,23 @@ class SearchForm extends Component {
         }) => (
             <div> {errors['oneOfFields'] && <span className="invalid-feedback" style={{display: 'block'}}>* {errors[field.name]}</span>} </div>
         )} />
+        <Row className="justify-content-end">
+          <Col xs={12} sm={6} md={6} xl={3}>
+            <Button color="primary" type="submit" block disabled={isSubmitting}>Search Requests</Button>
+          </Col>
+        </Row>
       </Form>
     );
   }
 }
 
 const MyEnhancedForm = withFormik({
-  mapPropsToValues: () => ({ imei: '', imsi: '', msisdn: '' }),
+  mapPropsToValues: () => ({ imei: '', serial_no: '', mac: '', contact: '' }),
 
   // Custom sync validation
   validate: values => {
       let errors = {};
-      if (!values.imei && !values.imsi && !values.msisdn) {
+      if (!values.imei && !values.serial_no && !values.mac && !values.contact) {
           errors.oneOfFields = 'One of the above fields is required'
       }
       return errors;
@@ -129,13 +134,16 @@ function prepareAPIRequest(values) {
     // Validate Values before sending
     const searchParams = {};
     if(values.imei) {
-        searchParams.imei = values.imei
+        searchParams.IMEI = values.imei
     }
-    if(values.imsi) {
-        searchParams.imsi = values.imsi
+    if(values.serial_no) {
+        searchParams.Serial_No = values.serial_no
     }
-    if(values.msisdn) {
-        searchParams.msisdn = values.msisdn
+    if(values.mac) {
+        searchParams.MAC = values.mac
+    }
+    if(values.contact) {
+        searchParams.CONTACT = values.contact
     }
     return searchParams;
 }
@@ -314,12 +322,17 @@ class SearchRequests extends Component {
       return <option key={item.value} value={item.value}>{item.label}</option>
     })
     if(((this.state.data || {}).cases || []).length > 0) {
-      searched_requests = this.state.data.cases.map((searched_request, index) => {
+      searched_requests = this.state.data.cases.map((searched_request) => {
           return (
-              <tr key={index}>
-                  <td data-label="IMEIs">{searched_request.imei}</td>
-                  <td data-label="IMSI">{searched_request.imsi}</td>
-                  <td data-label="MSISDN">{searched_request.msisdn}</td>
+              <tr key={searched_request.pair_code}>
+                  <td data-label="IMEIs">{searched_request.imei.split(',').join(', ')}</td>
+                  <td data-label="Brand">{searched_request.brand}</td>
+                  <td data-label="Model">{searched_request.model}</td>
+                  <td data-label="Serial Number">{searched_request.serial_no}</td>
+                  <td data-label="MAC Address">{searched_request.mac}</td>
+                  <td data-label="Pairing Code">{searched_request.pair_code}</td>
+                  <td data-label="Reference MSISDN">{searched_request.contact}</td>
+                  <td data-label="Pairing Status">{(searched_request.is_active) ? 'Unused': 'Used'}</td>
               </tr>
           )
       });
@@ -363,8 +376,13 @@ class SearchRequests extends Component {
                             <thead className="thead-light">
                                 <tr>
                                     <th>IMEIs</th>
-                                    <th>IMSI</th>
-                                    <th>MSISDN</th>
+                                    <th>Brand</th>
+                                    <th>Model</th>
+                                    <th>Serial Number</th>
+                                    <th>MAC Address</th>
+                                    <th>Pairing Code</th>
+                                    <th>Reference MSISDN</th>
+                                    <th>Pairing Status</th>
                                 </tr>
                             </thead>
                             <tbody>
