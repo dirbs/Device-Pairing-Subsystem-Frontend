@@ -15,6 +15,8 @@ import ReactDOM from 'react-dom';
 import {HashRouter, Route, Switch} from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import settings from './settings.json'
+import {KC_URL} from './utilities/constants';
 
 // Containers
 import Full from './containers/Full/'
@@ -33,7 +35,13 @@ import decode from 'jwt-decode'
 import Base64 from 'base-64';
 import Page401 from "./views/Errors/Page401";
 
-let kc = Keycloak('./keycloak.json');
+const { clientId, realm } = settings.keycloak;
+
+let kc = Keycloak({
+	url:KC_URL,
+	realm:realm,
+	clientId:clientId
+});
 
 /**
  * Code below adds Keycloak functionality and redirect loggedin user to either Application or 401 Authorized Page.
