@@ -14,12 +14,13 @@ import React, {Component} from 'react';
 import {translate} from 'react-i18next';
 import {Row, Col, Button, Form, Card, CardHeader, CardBody} from 'reactstrap';
 import {withFormik, Field, FieldArray} from 'formik';
-import {errors, instance, getAuthHeader} from "../../utilities/helpers";
+import {errors, instance, getAuthHeader, languageCheck} from "../../utilities/helpers";
 import doubleEntryInput from '../../components/Form/DoubleEntryInput'
 import renderInput from '../../components/Form/RenderInput'
 import RenderSelect from '../../components/Form/RenderSelect'
 import {COUNTRY_CODE} from '../../utilities/constants'
 import {toast} from 'react-toastify';
+import i18n from 'i18next';
 
 export function errorClass(errors, touched, i) {
   return (errors &&
@@ -281,14 +282,20 @@ const MyEnhancedForm = withFormik({
 
     if (!values.brand) {
       errors.brand = 'This field is Required'
-    } else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.brand)) {
+    }else if (languageCheck(values.brand) === false){
+      errors.brand = i18n.t('validation.langError')
+    }
+    else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.brand)) {
       errors.brand = 'Brand must contain characters and a combination of [-._\']'
     } else if (values.brand.length >= 1000) {
       errors.brand = 'Brand must be 1000 characters or less'
     }
     if (!values.model_name) {
       errors.model_name = 'This field is Required'
-    } else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.model_name)) {
+    }else if (languageCheck(values.model_name) === false){
+      errors.model_name = i18n.t('validation.langError')
+    }
+    else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.model_name)) {
       errors.model_name = 'Model Name must contain characters and a combination of [-._\']'
     } else if (values.model_name.length >= 1000) {
       errors.model_name = 'Model Name must be 1000 characters or less'

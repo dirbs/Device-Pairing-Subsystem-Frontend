@@ -6,23 +6,23 @@
     "defaultLanguage": "en"
   },
   "api": {
-    "host": "http://192.168.100.215",
-    "port": "",
-    "version": "/api/v1",
+    "host": "http://SERVER_IP",
+    "port": "PORT_NUMBER",
+    "version": "VERSION_OR_SUBPATH",
     "use": false
   },
   "apiman": {
-    "host": "http://192.168.100.212",
-    "port": "8080",
+    "host": "http://SERVER_IP",
+    "port": "PORT_NUMBER",
     "clientId": "/apiman-gateway/DIRBS/dps/1.0",
     "use": true
   },
   "keycloak": {
-    "host": "http://192.168.100.216",
-    "port": "8080",
-    "version": "/auth",
-    "clientId": "sso",
-    "realm": "DIRBS",
+    "host": "http://SERVER_IP",
+    "port": "PORT_NUMBER",
+    "version": "VERSION_OR_SUBPATH",
+    "clientId": "CLIENT_ID",
+    "realm": "REALM",
     "use": true
   }
 }

@@ -2,6 +2,9 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import HeaderDropdown from "./HeaderDropdown";
 import Sinon from 'sinon';
+import settings from '../../settings'
+
+const { defaultLanguage } = settings.appDetails;
 
 const userDetails = {
   preferred_username: "User"
@@ -26,12 +29,28 @@ describe('Header dropdown component', () => {
       expect(wrapper.state().dropdownOpen).toBe(false);
   });
 
-  test('logout button text is Logout if clicked logout button works', () => {
+  test('logout button text is Logout if clicked logout button works when default language is en', () => {
     const mockLogout = Sinon.spy();
     const wrapper = mount(<HeaderDropdown kc={{logout: mockLogout}} userDetails={userDetails} />);
     wrapper.find('button').simulate('click');
     expect(wrapper.find('button').text().trim()).toBe('Logout');
     expect(mockLogout.callCount).toBe(1);
+  });
+
+  test('logout button text is based on selected language if clicked logout button works when default language is defined', () => {
+    const mockLogout = Sinon.spy();
+    const wrapper = mount(<HeaderDropdown kc={{logout: mockLogout}} userDetails={userDetails} />);
+    wrapper.find('button').simulate('click');
+    if(defaultLanguage==='en') {
+      expect(wrapper.find('button').text().trim()).toBe('Logout');
+    }
+    else if(defaultLanguage==='es') {
+      expect(wrapper.find('button').text().trim()).toBe('Cerrar sesión');
+    }
+    else if (defaultLanguage==='id'){
+      expect(wrapper.find('button').text().trim()).toBe('Keluar');
+    }
+      expect(mockLogout.callCount).toBe(1);
   });
 
   test('render username correctly', () => {
