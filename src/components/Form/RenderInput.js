@@ -27,7 +27,7 @@ const renderInput = ({
       {props.prefix && <span>{props.prefix}</span>}
       <Input {...field} type={props.type} placeholder={props.placeholder} valid={states} disabled={props.disable} maxLength={maxLength} />
       {touched[field.name] &&
-      errors[field.name] && <FormFeedback>{errors[field.name]}</FormFeedback>}
+      errors[field.name] && <FormFeedback className="d-block">{errors[field.name]}</FormFeedback>}
     </FormGroup>
   )
 };

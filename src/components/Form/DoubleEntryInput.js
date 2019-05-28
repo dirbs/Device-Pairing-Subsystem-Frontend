@@ -39,7 +39,7 @@ class doubleEntryInput extends Component {
         <Label>{props.label} {props.requiredStar &&<span className="text-danger">*</span>}</Label>
         <Input {...field} type={props.type}  className={props.inputClass} placeholder={props.placeholder} valid={states} onPaste={this.onPasteHandler} maxLength={maxLength} />
         {touched[field.name] &&
-        errors[field.name] && <FormFeedback>{errors[field.name]}</FormFeedback>}
+        errors[field.name] && <FormFeedback className="d-block">{errors[field.name]}</FormFeedback>}
       </FormGroup>
     );
   }
