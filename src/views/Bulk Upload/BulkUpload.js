@@ -15,6 +15,7 @@ import {Card, CardBody, CardHeader, Form} from "reactstrap";
 import {withFormik} from "formik";
 import RenderFileInput from "../../components/Form/RenderFileInput";
 import StepLoading from "../../components/Loaders/StepLoading";
+import i18n from 'i18next';
 
 /**
  * Formik form component
@@ -94,11 +95,11 @@ export const EnhancedFileForm = withFormik({
   validate: values => {
     let errors = {}
     if (!values.file) {
-      errors.file = 'This field is required'
+      errors.file = i18n.t('validation.thisFieldIsRequired')
     } else if (getExtension(values.file.name) !== 'csv') {
-      errors.file = 'Invalid file extension, only support "csv"'
+      errors.file = i18n.t('validation.invalideFileExtension')
     } else if (values.file.size > 5000000) {
-      errors.file = 'File size limit exceeds from 5MB'
+      errors.file = i18n.t('validation.fileSize')
     }
     return errors;
   },

@@ -11,9 +11,11 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 */
 
 import React from 'react';
+import i18n from 'i18next';
+
 const StepLoading = props => (
   <div className="controler-box show-loading">
-    <div className="lds-roller" data-loading-title='Please wait, Your request is in Process'>
+    <div className="lds-roller" data-loading-title={i18n.t('pleaseWait')}>
       <div></div>
       <div></div>
       <div></div>

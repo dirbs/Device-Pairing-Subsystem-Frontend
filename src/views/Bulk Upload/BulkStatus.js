@@ -12,6 +12,7 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 
 import React, { Component } from 'react';
 import {downloadBulkFile, getAuthHeader} from '../../utilities/helpers'
+import i18n from "i18next";
 
 /**
  *Bulk Status component
@@ -52,26 +53,26 @@ class BulkStatus extends Component {
           <div className="icon-box">
             <i className={details.icon}></i>
           </div>
-          <h4>File has been <span>Uploaded</span> successfully.</h4>
+            <h4>{i18n.t('fileHasBeen')} <span>{i18n.t('uploaded')}</span> {i18n.t('successfully')}.</h4>
           <div className="msg row justify-content-center">
             <div className="col-md-8">
-              <h6 className="text-left"> Summary: </h6>
+              <h6 className="text-left">{i18n.t('summary')}: </h6>
               <table className="table table-bordered bulk-table">
                 <tbody>
                 <tr>
-                  <th className="text-left">Total MSISDNs/IMSIs</th>
+                  <th className="text-left">{i18n.t('total')} MSISDNs/IMSIs</th>
                   <td>{details.response.Total_Records}</td>
                 </tr>
                 <tr className={details.response.Deleted_Record !== 0 ? 'table-danger': ''}>
-                  <th className="text-left">Invalid MSISDNs/IMSIs</th>
+                  <th className="text-left">{i18n.t('invalid')} MSISDNs/IMSIs</th>
                   <td>{details.response.Deleted_Record} <br/>
                   {details.response.Deleted_Record !== 0 &&
-                  <button className="btn-link" onClick={(e)=>{this.updateTokenHOC(downloadBulkFile,details.response.link,e)}}>Click to download</button>
+                  <button className="btn-link" onClick={(e)=>{this.updateTokenHOC(downloadBulkFile,details.response.link,e)}}>{i18n.t('clickToDownload')}</button>
                   }
                   </td>
                 </tr>
                 <tr>
-                  <th className="text-left">Valid MSISDNs/IMSIs</th>
+                  <th className="text-left">{i18n.t('valid')} MSISDNs/IMSIs</th>
                   <td>{details.response.Successful_Records}</td>
                 </tr>
                 </tbody>

@@ -50,17 +50,16 @@ class CaseForm extends Component {
         <Row>
           <Col xs={12} xl={4} className="order-xl-12 mt-3">
             <div>
-              <div className="alert alert-info mb-2"><b> Device IMEI(s):</b>
+              <div className="alert alert-info mb-2"><b>{i18n.t('deviceImeiS')}:</b>
                 <ul>
-                  <li>IMEI can contain alphanumeric characters (0-9, A-F). The length of the IMEI should be between
-                    14-16 characters.
+                  <li>{i18n.t('IMEIDeviceInfoOne')}
                   </li>
-                  <li>In a single request up to 5 IMEI numbers can be added.</li>
+                  <li>{i18n.t('IMEIDeviceInfoTwo')}</li>
                 </ul>
               </div>
-              <div className="alert alert-info"><b> Mac (Wi-Fi) Address:</b>
+              <div className="alert alert-info"><b> {i18n.t('macWiFiAddress')}:</b>
                 <ul>
-                  <li>MAC addresses are 6-byte (48 bits) in length, and are written in the following formats:
+                  <li>{i18n.t('MACInfoOne')}:
                     <ul>
                       <li>A2:C9:66:F8:47:C5</li>
                       <li>A2-C9-66-F8-47-C5</li>
@@ -75,7 +74,7 @@ class CaseForm extends Component {
           </Col>
           <Col xs={12} xl={8} className="order-xl-1 mt-3">
             <Card>
-              <CardHeader><b>Device IMEI(s)</b></CardHeader>
+              <CardHeader><b>{i18n.t('deviceImeiS')}</b></CardHeader>
               <CardBody>
                 <div className="add-remove-wrap position-relative">
                   <FieldArray
@@ -89,8 +88,8 @@ class CaseForm extends Component {
                             return (
                               <Row key={i} className="mt-3">
                                 <Col xs={6}>
-                                  <Field name={`imeis[${i}].imei`} component={doubleEntryInput} label="Type IMEI"
-                                         type="text" placeholder={`Type IMEI ${i + 1}`} requiredStar groupClass="mb-0"
+                                  <Field name={`imeis[${i}].imei`} component={doubleEntryInput} label={i18n.t('typeImei')}
+                                         type="text" placeholder={i18n.t('typeImei') + ' ' + (i + 1)} requiredStar groupClass="mb-0"
                                          inputClass={inputClass}/>
                                   {errors &&
                                   errors.imeis &&
@@ -107,8 +106,8 @@ class CaseForm extends Component {
                                 </Col>
                                 <Col xs={6}>
                                   <div className="buttonbox">
-                                    <Field name={`imeis[${i}].reImei`} component={doubleEntryInput} label="Retype IMEI"
-                                           type="text" placeholder={`Retype IMEI ${i + 1}`} requiredStar
+                                    <Field name={`imeis[${i}].reImei`} component={doubleEntryInput} label={i18n.t('retypeImei')}
+                                           type="text" placeholder={i18n.t('retypeImei') + ' ' + (i + 1)} requiredStar
                                            groupClass="mb-0" inputClass={reInputClass}/>
                                     {errors &&
                                     errors.imeis &&
@@ -138,7 +137,7 @@ class CaseForm extends Component {
                             onClick={() => push({imei: "", reImei: ""})}
                             disabled={values.imeis.length >= 5}
                           >
-                            Add IMEIs
+                              {i18n.t('addImeIs')}
                           </Button>
                         </div>
                       )
@@ -148,39 +147,39 @@ class CaseForm extends Component {
               </CardBody>
             </Card>
             <Card>
-              <CardHeader><b>Device Identifiers</b></CardHeader>
+              <CardHeader><b>{i18n.t('deviceIdentifiers')}</b></CardHeader>
               <CardBody>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="serial_no" component={doubleEntryInput} label="Serial number" type="text"
-                           placeholder="Serial number" requiredStar maxLength={1000}/>
+                    <Field name="serial_no" component={doubleEntryInput} label={i18n.t('serialNumber')} type="text"
+                           placeholder={i18n.t('serialNumber')} requiredStar maxLength={1000}/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="retype_serial_no" component={doubleEntryInput} label="Retype Serial number" type="text"
-                           placeholder="Retype Serial number" requiredStar maxLength={1000}/>
+                    <Field name="retype_serial_no" component={doubleEntryInput} label={i18n.t('retypeSerialNumber')} type="text"
+                           placeholder={i18n.t('retypeSerialNumber')} requiredStar maxLength={1000}/>
                   </Col>
                 </Row>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="brand" component={renderInput} label="Brand" type="text" placeholder="Brand"
+                    <Field name="brand" component={renderInput} label={i18n.t('brand')} type="text" placeholder={i18n.t('brand')}
                            requiredStar/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="model_name" component={renderInput} label="Model Name" type="text"
-                           placeholder="Model Name" requiredStar/>
+                    <Field name="model_name" component={renderInput} label={i18n.t('modelName')} type="text"
+                           placeholder={i18n.t('modelName')} requiredStar/>
                   </Col>
                 </Row>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="mac" component={doubleEntryInput} label="MAC (Wi-Fi) address" type="text"
-                           placeholder="MAC (Wi-Fi) address" maxLength={23}/>
+                    <Field name="mac" component={doubleEntryInput} label={i18n.t('macWiFiAddress')} type="text"
+                           placeholder={i18n.t('macWiFiAddress')} maxLength={23}/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="retype_mac" component={doubleEntryInput} label="Retype MAC (Wi-Fi) address" type="text"
-                           placeholder="Retype MAC (Wi-Fi) address" maxLength={23}/>
+                    <Field name="retype_mac" component={doubleEntryInput} label={i18n.t('retypeMacWiFiAddress')} type="text"
+                           placeholder={i18n.t('retypeMacWiFiAddress')} maxLength={23}/>
                   </Col>
                 </Row>
 
@@ -197,16 +196,16 @@ class CaseForm extends Component {
                       error={errors.technologies}
                       touched={touched.technologies}
                       fieldName="technologies"
-                      label="Radio Access Technologies"
-                      placeholder="Select Technologies"
+                      label={i18n.t('radioAccessTechnologies')}
+                      placeholder={i18n.t('selectTechnologies')}
                       requiredStar
                       stayOpen={true}
                       multi={true}
                     />
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="ref_msisdn" component={renderInput} label="Reference MSISDN" type="text"
-                           placeholder="Reference MSISDN" requiredStar maxLength={15} groupClass="prefix-group"
+                    <Field name="ref_msisdn" component={renderInput} label={i18n.t('referenceMsisdn')} type="text"
+                           placeholder={i18n.t('referenceMsisdn')} requiredStar maxLength={15} groupClass="prefix-group"
                            prefix={COUNTRY_CODE}/>
                   </Col>
                 </Row>
@@ -215,7 +214,7 @@ class CaseForm extends Component {
             </Card>
             <div className="text-right">
               <Button color="primary" type="submit" className="btn-next-prev" disabled={isSubmitting}
-                      role="button">Submit</Button>
+                      role="button">{i18n.t('submit')}</Button>
             </div>
           </Col>
         </Row>
@@ -252,17 +251,17 @@ const MyEnhancedForm = withFormik({
 
 
         if (!values.imeis[i].imei) {
-          errors.imeis[i].imei = 'This field is required'
+          errors.imeis[i].imei = i18n.t('validation.thisFieldIsRequired')
         } else if (!/^(?=.[A-F]*)(?=.[0-9]*)[A-F0-9]{14,16}$/.test(values.imeis[i].imei)) {
-          errors.imeis[i].imei = 'IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]'
+          errors.imeis[i].imei = i18n.t('validation.imeiMustContain')
         }
 
         if (!values.imeis[i].reImei) {
-          errors.imeis[i].reImei = 'This field is required'
+          errors.imeis[i].reImei = i18n.t('validation.thisFieldIsRequired')
         } else if (!/^(?=.[A-F]*)(?=.[0-9]*)[A-F0-9]{14,16}$/.test(values.imeis[i].reImei)) {
-          errors.imeis[i].reImei = 'IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]'
+          errors.imeis[i].reImei = i18n.t('validation.imeiMustContain')
         } else if (values.imeis[i].imei !== values.imeis[i].reImei) {
-          errors.imeis[i].reImei = 'Entered IMEI doesn\'t match'
+          errors.imeis[i].reImei = i18n.t('validation.enteredImeiDoesnTMatch')
         }
         if (values.imeis[i].imei.length > 0) {
           imeis.push(values.imeis[i].imei)
@@ -281,58 +280,58 @@ const MyEnhancedForm = withFormik({
     }
 
     if (!values.brand) {
-      errors.brand = 'This field is Required'
+      errors.brand = i18n.t('validation.thisFieldIsRequired')
     }else if (languageCheck(values.brand) === false){
       errors.brand = i18n.t('validation.langError')
     }
     else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.brand)) {
-      errors.brand = 'Brand must contain characters and a combination of [-._\']'
+      errors.brand = i18n.t('validation.brandMustContainCharactersAndACombinationOf')
     } else if (values.brand.length >= 1000) {
-      errors.brand = 'Brand must be 1000 characters or less'
+      errors.brand = i18n.t('validation.brandMustBe1000CharactersOrLess')
     }
     if (!values.model_name) {
-      errors.model_name = 'This field is Required'
+      errors.model_name = i18n.t('validation.thisFieldIsRequired')
     }else if (languageCheck(values.model_name) === false){
       errors.model_name = i18n.t('validation.langError')
     }
     else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.model_name)) {
-      errors.model_name = 'Model Name must contain characters and a combination of [-._\']'
+      errors.model_name = i18n.t('validation.modelNameMustContainCharactersAndACombinationOf')
     } else if (values.model_name.length >= 1000) {
-      errors.model_name = 'Model Name must be 1000 characters or less'
+      errors.model_name = i18n.t('validation.modelNameMustBe1000CharactersOrLess')
     }
 
     if (!values.serial_no) {
-      errors.serial_no = 'This field is Required'
+      errors.serial_no = i18n.t('validation.thisFieldIsRequired')
     } else if (!/^([a-zA-Z0-9])([a-zA-Z 0-9.'_-])*$/i.test(values.serial_no)) {
-      errors.serial_no = 'Serial Number must contain characters and a combination of [-._\']'
+      errors.serial_no = i18n.t('validation.serialNumberMustContainCharactersAndACombinationOf')
     } else if (values.serial_no.length >= 1000) {
-      errors.serial_no = 'Serial Number must be 1000 characters or less'
+      errors.serial_no = i18n.t('validation.serialNumberMustBe1000CharactersOrLess')
     }
 
     if (!values.retype_serial_no) {
-      errors.retype_serial_no = 'This field is Required'
+      errors.retype_serial_no = i18n.t('validation.thisFieldIsRequired')
     } else if (values.serial_no !== values.retype_serial_no) {
-      errors.retype_serial_no = 'Entered Serial Number doesn\'t match'
+      errors.retype_serial_no = i18n.t('validation.enteredSerialNumberDoesnTMatch')
     }
 
     if (!values.mac) {
 
     } else if (!/^([0-9A-F]{2,4}[.:-]){3,7}([0-9A-F]{2,4})$/i.test(values.mac)) {
-      errors.mac = 'Invalid format, valid formats are given in description'
+      errors.mac = i18n.t('validation.invalidFormatValidFormatsAreGivenInDescription')
     }
 
     if (values.mac !== values.retype_mac) {
-      errors.retype_mac = 'Entered MAC Address doesn\'t match'
+      errors.retype_mac = i18n.t('validation.enteredMacAddressDoesnTMatch')
     }
 
     if (!values.technologies || !values.technologies.length) {
-      errors.technologies = 'This field is Required'
+      errors.technologies = i18n.t('validation.thisFieldIsRequired')
     }
 
     if (!values.ref_msisdn) {
-      errors.ref_msisdn = 'This field is Required'
+      errors.ref_msisdn = i18n.t('validation.thisFieldIsRequired')
     } else if (!/^([0-9]{1,11})$/i.test(values.ref_msisdn)) {
-      errors.ref_msisdn = 'Invalid format, valid format is: 3001234567891'
+      errors.ref_msisdn = i18n.t('validation.invalidFormatValidFormatIs3001234567891')
     }
 
     return errors;
