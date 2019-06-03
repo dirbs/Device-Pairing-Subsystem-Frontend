@@ -21,6 +21,7 @@ import TableLoader from './../../components/Loaders/TableLoader';
 import Pagination from "react-js-pagination";
 import DataTableInfo from '../../components/DataTable/DataTableInfo';
 import SearchFilters from "./SearchFilters";
+import i18n from "i18next";
 
 class SearchForm extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class SearchForm extends Component {
       <Form onSubmit={handleSubmit}>
         {(currSearchQuery.length > 0) && <div>
           <div className='selected-filters-header'>
-            <Button color="link" onClick={() => { this.handleResetForm(); }} disabled={!dirty || isSubmitting}>Clear All</Button>
+            <Button color="link" onClick={() => { this.handleResetForm(); }} disabled={!dirty || isSubmitting}>{i18n.t('clearAll')}</Button>
           </div>
           <SearchFilters filters={currSearchQuery} handleReset={this.handleReset} />
           <hr />
@@ -80,15 +81,15 @@ class SearchForm extends Component {
             <Field name="imei" component={renderInput} type="text" label="IMEI" placeholder="IMEI"/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="serial_no" component={renderInput} type="text" label="Serial Number"
-                   placeholder="Serial Number"/>
+            <Field name="serial_no" component={renderInput} type="text" label={i18n.t('serialNumber')}
+                   placeholder={i18n.t('serialNumber')}/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="mac" component={renderInput} type="text" label="MAC Address" placeholder="MAC Address"/>
+            <Field name="mac" component={renderInput} type="text" label={i18n.t('macAddress')} placeholder={i18n.t('macAddress')}/>
           </Col>
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Field name="contact" component={renderInput} type="text" label="Reference MSISDN"
-                   placeholder="Reference MSISDN"/>
+            <Field name="contact" component={renderInput} type="text" label={i18n.t('referenceMsisdn')}
+                   placeholder={i18n.t('referenceMsisdn')}/>
           </Col>
         </Row>
         </Card>
@@ -101,7 +102,7 @@ class SearchForm extends Component {
         )} />
         <Row className="justify-content-end">
           <Col xs={12} sm={6} md={6} xl={3}>
-            <Button color="primary" type="submit" block disabled={isSubmitting}>Search Requests</Button>
+            <Button color="primary" type="submit" block disabled={isSubmitting}>{i18n.t('searchRequestLink')}</Button>
           </Col>
         </Row>
       </Form>
@@ -116,7 +117,7 @@ const MyEnhancedForm = withFormik({
   validate: values => {
       let errors = {};
       if (!values.imei && !values.serial_no && !values.mac && !values.contact) {
-          errors.oneOfFields = 'One of the above fields is required'
+          errors.oneOfFields = i18n.t('validation.oneOfTheAboveFieldsIsRequired')
       }
       return errors;
   },
@@ -271,13 +272,13 @@ class SearchRequests extends Component {
             query.push({filter:key,filterName:'IMEI',value: values[key]})
             break;
           case 'Serial_No':
-            query.push({filter:key,filterName:'Serial Number',value: values[key]})
+            query.push({filter:key,filterName:i18n.t('serialNumber'),value: values[key]})
             break;
           case 'MAC':
-            query.push({filter:key,filterName:'MAC Address',value: values[key]})
+            query.push({filter:key,filterName:i18n.t('macAddress'),value: values[key]})
             break;
           case 'CONTACT':
-            query.push({filter:key,filterName:'Reference MSISDN',value: values[key]})
+            query.push({filter:key,filterName:i18n.t('referenceMsisdn'),value: values[key]})
             break;
            default:
             break;
@@ -326,13 +327,13 @@ class SearchRequests extends Component {
           return (
               <tr key={searched_request.pair_code}>
                   <td data-label="IMEIs">{searched_request.imei.split(',').join(', ')}</td>
-                  <td data-label="Brand">{searched_request.brand}</td>
-                  <td data-label="Model">{searched_request.model}</td>
-                  <td data-label="Serial Number">{searched_request.serial_no}</td>
-                  <td data-label="MAC Address">{searched_request.mac}</td>
-                  <td data-label="Pairing Code">{searched_request.pair_code}</td>
-                  <td data-label="Reference MSISDN">{searched_request.contact}</td>
-                  <td data-label="Pairing Status">{(searched_request.is_active) ? 'Unused': 'Used'}</td>
+                  <td data-label={i18n.t('brand')}>{searched_request.brand}</td>
+                  <td data-label={i18n.t('modelName')}>{searched_request.model}</td>
+                  <td data-label={i18n.t('serialNumber')}>{searched_request.serial_no}</td>
+                  <td data-label={i18n.t('macAddress')}>{searched_request.mac}</td>
+                  <td data-label={i18n.t('pairingCode')}>{searched_request.pair_code}</td>
+                  <td data-label={i18n.t('referenceMsisdn')}>{searched_request.contact}</td>
+                  <td data-label={i18n.t('pairingStatus')}>{(searched_request.is_active) ? 'Unused': 'Used'}</td>
               </tr>
           )
       });
@@ -345,7 +346,7 @@ class SearchRequests extends Component {
               <div className="filters">
                 <Card>
                   <CardHeader>
-                    <b>Search Filters</b>
+                    <b>{i18n.t('searchFilters')}</b>
                   </CardHeader>
                   <CardBody>
                     <MyEnhancedForm callServer={this.saveSearchQuery}
@@ -376,13 +377,13 @@ class SearchRequests extends Component {
                             <thead className="thead-light">
                                 <tr>
                                     <th>IMEIs</th>
-                                    <th>Brand</th>
-                                    <th>Model</th>
-                                    <th>Serial Number</th>
-                                    <th>MAC Address</th>
-                                    <th>Pairing Code</th>
-                                    <th>Reference MSISDN</th>
-                                    <th>Pairing Status</th>
+                                    <th>{i18n.t('brand')}</th>
+                                    <th>{i18n.t('modelName')}</th>
+                                    <th>{i18n.t('serialNumber')}</th>
+                                    <th>{i18n.t('macAddress')}</th>
+                                    <th>{i18n.t('pairingCode')}</th>
+                                    <th>{i18n.t('referenceMsisdn')}</th>
+                                    <th>{i18n.t('pairingStatus')}</th>
                                 </tr>
                             </thead>
                             <tbody>

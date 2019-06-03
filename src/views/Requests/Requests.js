@@ -404,7 +404,7 @@ class Requests extends Component {
                     </td>
                   </tr>
                 })) || <tr>
-                  <td className="text-center" colSpan={3}>No requests found</td>
+                  <td className="text-center" colSpan={3}>{t('noRequestFound')}</td>
                 </tr>
                 }
                 </tbody>
@@ -436,7 +436,7 @@ class Requests extends Component {
                     innerClass="pagination"
                   />
                   <div className="hand-limit">
-                    <Label>Show</Label>
+                    <Label>{t('show')}</Label>
                     <div className="selectbox">
                       <Input value={this.state.limit} onChange={(e) => {
                         this.handleLimitChange(e)
@@ -445,11 +445,11 @@ class Requests extends Component {
                         {itemOptions}
                       </Input>
                     </div>
-                    <Label>Requests</Label>
+                    <Label>{t('requests')}</Label>
                   </div>
                   <div className='start-toend'>
                     <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases}
-                                   itemType={'requests'}/>
+                                   itemType={t('requests')}/>
                   </div>
                 </article>
               }
