@@ -10,7 +10,8 @@
 */
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
-import {instance, errors, getAuthHeader, getUserRole} from "../../utilities/helpers";
+import i18n from 'i18next';
+import {instance, errors, getAuthHeader, getUserRole, SweetAlert} from "../../utilities/helpers";
 import {PAGE_LIMIT,ITEMS_PER_PAGE} from "../../utilities/constants";
 import Pagination from "react-js-pagination";
 import FileSaver from "file-saver";
@@ -103,16 +104,16 @@ export const EnhancedModalForm = withFormik({
   validate: values => {
     let errors = {}
     if (values.imsi === '') {
-      errors.imsi = 'This field is required'
+      errors.imsi = i18n.t('validation.thisFieldIsRequired')
     } else if (isNaN(values.imsi)) {
-      errors.imsi = 'IMSI must be digits only [0-9]'
+      errors.imsi = i18n.t('validation.IMSIMustbeDigits')
     } else if (values.imsi.length < 15) {
-      errors.imsi = 'IMSI length should be 15 digits'
+      errors.imsi = i18n.t('validation.IMSIShouldbeLessThan')
     }
     if (values.reImsi === '') {
-      errors.reImsi = 'This field is required'
+      errors.reImsi = i18n.t('validation.thisFieldIsRequired')
     } else if (values.imsi !== values.reImsi) {
-      errors.reImsi = 'IMSIs does not match'
+      errors.reImsi = i18n.t('validation.IMSIDoesNotMatch')
     }
     return errors;
   },
@@ -335,7 +336,11 @@ class Requests extends Component {
            * fetch data from main component
            */
           this.updateTokenHOC(this.getCases)
-          toast.success(response.data.msg)
+          SweetAlert({
+            title: i18n.t('success'),
+            message: response.data.msg,
+            type: 'success'
+          })
         }
       })
       .catch(error => {

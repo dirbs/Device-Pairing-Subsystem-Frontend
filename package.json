@@ -10,7 +10,9 @@
     "react-test-renderer": "^16.6.0"
   },
   "dependencies": {
+    "airbnb-browser-shims": "^3.2.0",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "base-64": "^0.1.0",
     "bootstrap": "^4.1.1",
     "file-saver": "^2.0.0-rc.4",

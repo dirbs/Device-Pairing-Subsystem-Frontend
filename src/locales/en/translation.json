@@ -80,11 +80,16 @@
   "pairingCode": "Pairing Code",
   "pairingStatus": "Pairing Status",
   "noRequestFound": "No requests found",
+  "RequestFound": "Requests found",
   "show": "Show",
   "showing": "Showing",
   "requests": "Requests",
   "pleaseWait": "Please wait, Your request is in Process",
   "to": "to",
+  "alert.warning": "Warning!",
+  "button.cancel": "Cancel",
+  "button.leave": "Leave",
+  "success": "Success",
 
   "validation.oneOfTheAboveFieldsIsRequired": "One of the above fields is required",
   "validation.enteredImeiDoesnTMatch": "Entered IMEI doesn't match",
@@ -101,5 +106,8 @@
   "validation.enteredMacAddressDoesnTMatch": "Entered MAC Address doesn't match",
   "validation.invalidFormatValidFormatIs3001234567891": "Invalid format, valid format is: 3001234567891",
   "validation.invalideFileExtension": "Invalid file extension, only support 'csv'",
-  "validation.fileSize": "File size limit exceeds from 5MB"
+  "validation.fileSize": "File size limit exceeds from 5MB",
+  "validation.IMSIMustbeDigits": "IMSI must be digits only [0-9]",
+  "validation.IMSIShouldbeLessThan": "IMSI length should be 15 digits",
+  "validation.IMSIDoesNotMatch": "IMSIs does not match"
 }

@@ -81,11 +81,16 @@
   "pairingCode": "Kode Pemasangan",
   "pairingStatus": "Status pemasangan",
   "noRequestFound": "Tidak ada permintaan yang ditemukan",
+  "RequestFound": "Permintaan ditemukan",
   "show": "Menunjukkan",
   "showing": "Menunjukkan",
   "requests": "Permintaan",
   "pleaseWait": "Harap tunggu, Permintaan Anda sedang dalam Proses",
   "to": "untuk",
+  "alert.warning": "Peringatan!",
+  "button.cancel": "Membatalkan",
+  "button.leave": "Meninggalkan",
+  "success": "keberhasilan",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Salah satu bidang di atas wajib diisi",
   "validation.enteredImeiDoesnTMatch": "IMEI yang dimasukkan tidak cocok",
@@ -102,5 +107,8 @@
   "validation.enteredMacAddressDoesnTMatch": "Alamat MAC yang dimasukkan tidak cocok",
   "validation.invalidFormatValidFormatIs3001234567891": "Format tidak valid, format yang valid adalah: 3001234567891",
   "validation.invalideFileExtension": "Ekstensi file tidak valid, hanya mendukung 'csv'",
-  "validation.fileSize": "Batas ukuran file melebihi dari 5MB"
+  "validation.fileSize": "Batas ukuran file melebihi dari 5MB",
+  "validation.IMSIMustbeDigits": "IMSI harus berupa digit saja [0-9]",
+  "validation.IMSIShouldbeLessThan": "Panjang IMSI harus 15 digit",
+  "validation.IMSIDoesNotMatch": "IMSI tidak cocok"
 }

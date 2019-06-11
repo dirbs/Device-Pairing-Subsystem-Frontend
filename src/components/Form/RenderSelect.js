@@ -47,6 +47,7 @@ class RenderSelect extends Component {
               options={this.props.options}
               placeholder={this.props.placeholder}
               value={this.props.value}
+              noOptionsMessage={() => null}
           />
         {!!this.props.error &&
         this.props.touched && (
