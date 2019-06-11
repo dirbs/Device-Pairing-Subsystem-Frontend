@@ -370,7 +370,7 @@ class SearchRequests extends Component {
                     ? <div>
                         <Card className="mb-1">
                             <CardHeader className="border-bottom-0">
-                                <b className="text-primary">{(this.state.totalCases > 1) ? `${this.state.totalCases} Requests found`: `${this.state.totalCases} Request found`}</b>
+                                <b className="text-primary">{(this.state.totalCases > 1) ? `${this.state.totalCases} ${i18n.t('RequestFound')}`: `${this.state.totalCases} ${i18n.t('RequestFound')}`}</b>
                             </CardHeader>
                         </Card>
                         <table className="table table-sm table-bordered table-hover mt-3 table-mobile-primary table-search">
@@ -395,7 +395,7 @@ class SearchRequests extends Component {
                     ?
                         <Card className="mb-1">
                             <CardHeader className="border-bottom-0">
-                                <b className="text-danger">No Requests Found</b>
+                                <b className="text-danger">{i18n.t('noRequestFound')}</b>
                             </CardHeader>
                         </Card>
                         : null
@@ -412,7 +412,7 @@ class SearchRequests extends Component {
 				            innerClass="pagination"
 			            />
 			            <div className="hand-limit">
-				            <Label>Show</Label>
+				            <Label>{i18n.t('show')}</Label>
 				            <div className="selectbox">
 					            <Input value={this.state.limit} onChange={(e) => {
 						            this.handleLimitChange(e)
@@ -421,7 +421,7 @@ class SearchRequests extends Component {
 						            {itemOptions}
 					            </Input>
 				            </div>
-				            <Label>Requests</Label>
+				            <Label>{i18n.t('requests')}</Label>
 			            </div>
 			            <div className='start-toend'>
 				            <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases} itemType={'requests'}/>
