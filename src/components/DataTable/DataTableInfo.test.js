@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import DataTableInfo from './DataTableInfo';
+import i18n from './../../i18n';
 
 const pageInfo = {
   start: 1,
@@ -60,7 +61,7 @@ describe('DataTableInfo', () => {
       itemType: 'requests'
     }
     const wrapper = mount(<DataTableInfo start={pageInfo.start} limit={pageInfo.limit} total={pageInfo.total} itemType={pageInfo.itemType} />);
-    expect(wrapper.find('span').at(0).text()).toBe((pageInfo.start + 1) + ' to ' + (pageInfo.limit).toString());
+    expect(wrapper.find('span').at(0).text()).toBe((pageInfo.start + 1) + ` ${i18n.t('to')} ` + (pageInfo.limit).toString());
   });
 
 });

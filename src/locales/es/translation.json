@@ -92,6 +92,7 @@
   "button.cancel": "Cancelar",
   "button.leave": "Salir",
   "success": "éxito",
+  "noResultFound": "No se han encontrado resultados",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Uno de los campos anteriores es obligatorio",
   "validation.enteredImeiDoesnTMatch": "El IMEI introducido no coincide",
