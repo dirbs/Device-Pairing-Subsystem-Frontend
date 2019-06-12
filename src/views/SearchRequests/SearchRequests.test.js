@@ -4,6 +4,7 @@ import SearchRequests from './SearchRequests';
 import { withFormik, Field } from 'formik';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './../../i18nTest';
+import I18n from "i18next";
 import sinon from 'sinon';
 import mockAxios from 'jest-mock-axios';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -74,7 +75,7 @@ describe('SearchRequests component', () => {
     const searchForm = wrapper.find('Form');
     expect(searchForm.find('.border-danger').at(0).length).toEqual(1);
     expect(searchForm.find('.invalid-feedback').length).toEqual(1);
-    expect(searchForm.find('.invalid-feedback').text()).toEqual('* One of the above fields is required');
+    expect(searchForm.find('.invalid-feedback').text()).toEqual(`* ${I18n.t('validation.oneOfTheAboveFieldsIsRequired')}`);
   });
 
   /* Test for table element would not exists in SearchRequests*/
@@ -215,7 +216,7 @@ describe('SearchRequests component', () => {
     expect(wrapper.find('SearchRequests').state().totalCases).toEqual(1);
     expect(wrapper.find('SearchRequests').find('.listbox table')).toHaveLength(1);
     expect(wrapper.find('.listbox table tbody tr td')).toHaveLength(8);
-    expect(wrapper.find('.listbox .text-primary').text()).toEqual('1 Request found');
+    expect(wrapper.find('.listbox .text-primary').text()).toEqual(`1 ${I18n.t('RequestFound')}`);
   });
   
 });

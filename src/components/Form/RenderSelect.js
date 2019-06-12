@@ -13,6 +13,7 @@ NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS 
 import React, {Component} from "react";
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import i18n from "i18next";
 
 
 class RenderSelect extends Component {
@@ -47,7 +48,7 @@ class RenderSelect extends Component {
               options={this.props.options}
               placeholder={this.props.placeholder}
               value={this.props.value}
-              noOptionsMessage={() => null}
+              noResultsText={i18n.t('noResultFound')}
           />
         {!!this.props.error &&
         this.props.touched && (

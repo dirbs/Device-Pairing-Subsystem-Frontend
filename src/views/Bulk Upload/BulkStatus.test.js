@@ -3,6 +3,7 @@ import {shallow} from 'enzyme';
 import BulkStatus from './BulkStatus';
 import mockAxios from 'jest-mock-axios';
 import FileSaver from "file-saver";
+import i18n from './../../i18n';
 
 //Mock File-saver
 jest.mock('file-saver', ()=>({saveAs: jest.fn()}))
@@ -44,7 +45,7 @@ describe('BulkStatus component', () => {
 
     //Status details
     expect(wrapper.find('table tr').at(0).find('td').text()).toEqual('1')
-    expect(wrapper.find('table tr').at(1).find('td').text()).toEqual('1 Click to download')
+    expect(wrapper.find('table tr').at(1).find('td').text()).toEqual(`1 ${i18n.t('clickToDownload')}`)
     expect(wrapper.find('table tr').at(2).find('td').text()).toEqual('0')
 
   })
