@@ -91,6 +91,7 @@
   "button.leave": "Leave",
   "success": "Success",
   "noResultFound": "No results found",
+  "language": "Language",
 
   "validation.oneOfTheAboveFieldsIsRequired": "One of the above fields is required",
   "validation.enteredImeiDoesnTMatch": "Entered IMEI doesn't match",

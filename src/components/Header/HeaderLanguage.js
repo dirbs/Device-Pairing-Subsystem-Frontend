@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import settings from './../../settings';
+import i18n from './../../i18n';
+
 
 
 class HeaderLanguage extends Component {
@@ -8,7 +10,7 @@ class HeaderLanguage extends Component {
     return (
       <li className="nav-item">
         <div className="lang">
-          Language:<span>{defaultLanguage}</span>
+        {i18n.t('language')}:<span>{defaultLanguage}</span>
         </div>
       </li>
     );
