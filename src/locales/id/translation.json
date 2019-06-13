@@ -92,6 +92,7 @@
   "button.leave": "Meninggalkan",
   "success": "keberhasilan",
   "noResultFound": "Tidak ada hasil yang ditemukan",
+  "language": "Bahasa",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Salah satu bidang di atas wajib diisi",
   "validation.enteredImeiDoesnTMatch": "IMEI yang dimasukkan tidak cocok",

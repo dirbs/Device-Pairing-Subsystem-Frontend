@@ -93,6 +93,7 @@
   "button.leave": "Salir",
   "success": "éxito",
   "noResultFound": "No se han encontrado resultados",
+  "language": "Idioma",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Uno de los campos anteriores es obligatorio",
   "validation.enteredImeiDoesnTMatch": "El IMEI introducido no coincide",
