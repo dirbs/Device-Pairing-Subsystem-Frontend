@@ -96,6 +96,7 @@
   "pairingCodeIs": "Pairing Code is",
   "registered": "Registered",
   "viewRequest": "View Request",
+  "wentWrong": "something went wrong",
 
   "validation.oneOfTheAboveFieldsIsRequired": "One of the above fields is required",
   "validation.enteredImeiDoesnTMatch": "Entered IMEI doesn't match",

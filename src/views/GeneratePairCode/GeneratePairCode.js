@@ -476,7 +476,7 @@ class GeneratePairCode extends Component {
             state: {details: statusDetails}
           });
         } else {
-          toast.error('something went wrong');
+          toast.error(i18n.t('wentWrong'));
         }
       })
       .catch(error => {

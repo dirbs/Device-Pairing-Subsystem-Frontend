@@ -97,6 +97,7 @@
   "pairingCodeIs": "Kode Pemasangan adalah",
   "registered": "Terdaftar",
   "viewRequest": "Lihat Permintaan",
+  "wentWrong": "ada yang salah",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Salah satu bidang di atas wajib diisi",
   "validation.enteredImeiDoesnTMatch": "IMEI yang dimasukkan tidak cocok",
