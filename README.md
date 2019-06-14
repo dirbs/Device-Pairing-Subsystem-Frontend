@@ -93,8 +93,42 @@ npm install
 
 #### APIMan, Keycloak and API Configurations
 
+**Note** For Windows users manually make a copy of settings-template.json in src directory and name it settings.json.
+
 ```
 cp src/settings-template.json src/settings.json
+```
+
+#### Update all the configs into the file.
+```
+{
+  "appDetails": {
+      "appName": "dps", // configure Application name, make sure that this appName must be same as mentioned in Keycloak roles, e.g. dps_authority
+      "supportEmail": "support@example.com", // configure this email as it will be visible for unauthorized user
+      "supportNumber": "PHONE_NUMBER", // configure this contact number as it will be visible for unauthorized user
+      "defaultLanguage": "en"
+  },
+  "api": {
+      "host": "HOST API", // Configure API Host e.g. http://www.api-example.com
+      "port": "API PORT", // Configure API Port e.g. 3000
+      "version": "API VERSION", // Configure API Version e.g. /api/v1/
+      "use": false // for directly hitting API, make it *True*
+  },
+  "apiman": {
+      "host": "HOST APIMAN", // configure Apiman Host e.g. http://www.apiman-example.com
+      "port": "APIMAN PORT", // Configure Apiman Port e.g. 8000
+      "clientId": "APIMAN CLIENT ID", // configure clientID e.g. /apiman-gateway/example/appname/1.0
+      "use": true  // for hitting Apiman Gateway directly, make it *True*
+  },
+  "keycloak": {
+      "host": "http://SERVER_IP", // keycloak url
+      "port": "PORT_NUMBER", // keycloak port
+      "version": "VERSION_OR_SUBPATH",
+      "clientId": "CLIENT_ID",
+      "realm": "REALM",
+      "use": true 
+  }
+}
 ```
 
 **Note:** Update all the URLs into the file.
