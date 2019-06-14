@@ -55,6 +55,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import i18n from 'i18next';
 
 class RequestStatus extends Component {
   render() {
@@ -65,13 +66,13 @@ class RequestStatus extends Component {
             <div className="icon-box">
               <i className={details.icon}></i>
             </div>
-            <h4>Request has been <span>{details.action}</span> successfully!</h4>
+            <h4>{i18n.t('requestHasbeen')} <span>{details.action}</span> {i18n.t('successfully')}!</h4>
             <div className="msg">
-              <p>Pairing Code is <span>{details.id}</span></p>
+              <p>{i18n.t('pairingCodeIs')} <span>{details.id}</span></p>
             </div>
             {details.showButton &&
 	            <div className="link-box">
-	              <Link to={details.link} className="btn btn-primary">View Request</Link>
+	              <Link to={details.link} className="btn btn-primary">{i18n.t('viewRequest')}</Link>
 	            </div>
         	}
           </div>

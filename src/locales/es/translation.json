@@ -94,6 +94,11 @@
   "success": "éxito",
   "noResultFound": "No se han encontrado resultados",
   "language": "Idioma",
+  "requestHasbeen": "Permintaan telah",
+  "pairingCodeIs": "El código de emparejamiento es",
+  "registered": "Registrado",
+  "viewRequest": "Ver solicitud",
+  "wentWrong": "algo salió mal",
 
   "validation.oneOfTheAboveFieldsIsRequired": "Uno de los campos anteriores es obligatorio",
   "validation.enteredImeiDoesnTMatch": "El IMEI introducido no coincide",
