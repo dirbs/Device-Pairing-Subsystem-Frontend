@@ -467,7 +467,7 @@ class GeneratePairCode extends Component {
           const statusDetails = {
             id: response.data.pair_code,
             icon: 'fa fa-check',
-            action: 'Registered',
+            action: i18n.t('registered'),
             showButton: false,
             link: null
           }

@@ -55,6 +55,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!doctype html>
 <html lang="en">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -63,11 +64,28 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <meta name="format-detection" content="telephone=no"/>
     <title>DPS</title>
   </head>
-
+<script>
+  $( document ).ready(function() {
+    var loaderElement = document.getElementById("mainLoader");
+    var lang = localStorage.getItem('i18nextLng');
+    if(lang === 'en')
+    {
+      loaderElement.setAttribute("data-app-name", "Device Pairing System");
+    }
+    else if (lang === 'es')
+    {
+      loaderElement.setAttribute("data-app-name", "Sistema de emparejamiento de dispositivos");
+    }
+    else if (lang === 'id')
+    {
+      loaderElement.setAttribute("data-app-name", "Sistem Pasangan Perangkat");
+    }
+});
+</script>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <div id="root">
       <div class="page-loader">
-         <div class="loading" data-app-name="DPS">
+         <div id="mainLoader" class="loading">
            <div></div>
            <div></div>
            <div></div>
