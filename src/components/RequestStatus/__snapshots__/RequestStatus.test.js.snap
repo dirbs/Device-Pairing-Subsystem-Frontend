@@ -48,17 +48,18 @@ ShallowWrapper {
           />
         </div>
         <h4>
-          Request has been 
+           
           <span>
             Registered
           </span>
-           successfully!
+           
+          !
         </h4>
         <div
           className="msg"
         >
           <p>
-            Pairing Code is 
+             
             <span>
               123
             </span>
@@ -81,17 +82,18 @@ ShallowWrapper {
             />
           </div>,
           <h4>
-            Request has been 
+             
             <span>
               Registered
             </span>
-             successfully!
+             
+            !
           </h4>,
           <div
             className="msg"
           >
             <p>
-              Pairing Code is 
+               
               <span>
                 123
               </span>
@@ -133,16 +135,20 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              "Request has been ",
+              undefined,
+              " ",
               <span>
                 Registered
               </span>,
-              " successfully!",
+              " ",
+              undefined,
+              "!",
             ],
           },
           "ref": null,
           "rendered": Array [
-            "Request has been ",
+            undefined,
+            " ",
             Object {
               "instance": null,
               "key": undefined,
@@ -154,7 +160,9 @@ ShallowWrapper {
               "rendered": "Registered",
               "type": "span",
             },
-            " successfully!",
+            " ",
+            undefined,
+            "!",
           ],
           "type": "h4",
         },
@@ -164,7 +172,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <p>
-              Pairing Code is 
+               
               <span>
                 123
               </span>
@@ -178,7 +186,8 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                "Pairing Code is ",
+                undefined,
+                " ",
                 <span>
                   123
                 </span>,
@@ -186,7 +195,8 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": Array [
-              "Pairing Code is ",
+              undefined,
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
@@ -226,17 +236,18 @@ ShallowWrapper {
             />
           </div>
           <h4>
-            Request has been 
+             
             <span>
               Registered
             </span>
-             successfully!
+             
+            !
           </h4>
           <div
             className="msg"
           >
             <p>
-              Pairing Code is 
+               
               <span>
                 123
               </span>
@@ -259,17 +270,18 @@ ShallowWrapper {
               />
             </div>,
             <h4>
-              Request has been 
+               
               <span>
                 Registered
               </span>
-               successfully!
+               
+              !
             </h4>,
             <div
               className="msg"
             >
               <p>
-                Pairing Code is 
+                 
                 <span>
                   123
                 </span>
@@ -311,16 +323,20 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                "Request has been ",
+                undefined,
+                " ",
                 <span>
                   Registered
                 </span>,
-                " successfully!",
+                " ",
+                undefined,
+                "!",
               ],
             },
             "ref": null,
             "rendered": Array [
-              "Request has been ",
+              undefined,
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
@@ -332,7 +348,9 @@ ShallowWrapper {
                 "rendered": "Registered",
                 "type": "span",
               },
-              " successfully!",
+              " ",
+              undefined,
+              "!",
             ],
             "type": "h4",
           },
@@ -342,7 +360,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": <p>
-                Pairing Code is 
+                 
                 <span>
                   123
                 </span>
@@ -356,7 +374,8 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  "Pairing Code is ",
+                  undefined,
+                  " ",
                   <span>
                     123
                   </span>,
@@ -364,7 +383,8 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
-                "Pairing Code is ",
+                undefined,
+                " ",
                 Object {
                   "instance": null,
                   "key": undefined,
