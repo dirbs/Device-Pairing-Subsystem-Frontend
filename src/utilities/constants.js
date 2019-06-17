@@ -87,6 +87,6 @@ export const ITEMS_PER_PAGE= [
 ]
 export const COUNTRY_CODE = '92';
 
-export const ENGLISH_REGEX = /^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/;
-export const SPANISH_REGEX = /^[0-9A-Za-zñáéíóúü$@$!%*?&#^-_. +]+$/i;
-export const INDONESIAN_REGEX = /^[0-9A-Za-zé$@$!%*?&#^-_. +]+$/i;
+export const ENGLISH_REGEX = /^[a-zA-Z0-9$@$!%*?&#^+]+$/;
+export const SPANISH_REGEX = /^[0-9A-Za-zñáéíóúü$@$!%*?&#^+]+$/i;
+export const INDONESIAN_REGEX = /^[0-9A-Za-zé$@$!%*?&#^+]+$/i;
