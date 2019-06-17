@@ -327,7 +327,7 @@ const MyEnhancedForm = withFormik({
     }else if (languageCheck(values.brand) === false && !/[-& ]/g.test(values.brand)){
       errors.brand = i18n.t('validation.langError')
     }
-    else if (!/^([a-zA-Z. &'_-])([a-zA-Z 0-9. &'_-])*$/i.test(values.brand)) {
+    else if (!/^([a-zA-Z &-])([a-zA-Z 0-9 &-])*$/i.test(values.brand)) {
       errors.brand = i18n.t('validation.brandMustContainCharactersAndACombinationOf')
     } else if (values.brand.length >= 1000) {
       errors.brand = i18n.t('validation.brandMustBe1000CharactersOrLess')
@@ -337,7 +337,7 @@ const MyEnhancedForm = withFormik({
     }else if (languageCheck(values.model_name) === false && !/[-() ]/g.test(values.model_name)){
       errors.model_name = i18n.t('validation.langError')
     }
-    else if (!/^([a-zA-Z. ()'_-])([a-zA-Z 0-9. ()'_-])*$/i.test(values.model_name) ) {
+    else if (!/^([a-zA-Z ()'-])([a-zA-Z 0-9 ()'-])*$/i.test(values.model_name) ) {
       errors.model_name = i18n.t('validation.modelNameMustContainCharactersAndACombinationOf')
     } else if (values.model_name.length >= 1000) {
       errors.model_name = i18n.t('validation.modelNameMustBe1000CharactersOrLess')
@@ -481,6 +481,7 @@ class GeneratePairCode extends Component {
       })
       .catch(error => {
         errors(this, error);
+        console.log(error);
       })
   }
 

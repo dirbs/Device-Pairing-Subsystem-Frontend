@@ -183,7 +183,7 @@ export function errors (context, error) {
       } else if (error.response.status === 422) {
         SweetAlert({
           title: i18n.t('error'),
-          message: i18n.t('unprocessibleEntity'),
+          message: error.response.data.Error === null ? i18n.t('unprocessibleEntity'): error.response.data.Error,
           type: 'error'
         });
         let errors = error.response.data.messages;
