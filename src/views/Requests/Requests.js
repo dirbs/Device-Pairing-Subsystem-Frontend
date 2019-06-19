@@ -106,11 +106,11 @@ class AddIMSIForm extends Component {
                     <ModalBody>
                       <Row>
                         <Col className='order-md-1' xs={12} md={6} lg={6}>
-                          <Field name="imsi" component={renderInput} type="text" maxlength={15}
+                          <Field name="imsi" component={renderInput} type="text" maxLength={15}
                                  label={t('modal.imsilabel')} placeholder={t('modal.imsiplaceholder')}/>
                         </Col>
                         <Col className='order-md-1' xs={12} md={6} lg={6}>
-                          <Field name="reImsi" component={renderInput} type="text" maxlength={15}
+                          <Field name="reImsi" component={renderInput} type="text" maxLength={15}
                                  label={t('modal.reimsilabel')} placeholder={t('modal.reimsiplaceholder')}/>
                         </Col>
                       </Row>
