@@ -51,11 +51,14 @@ ShallowWrapper {
           />
         </div>
         <h4>
-          File has been 
+          File has been
+           
           <span>
             Uploaded
           </span>
-           successfully.
+           
+          successfully
+          .
         </h4>
         <div
           className="msg row justify-content-center"
@@ -66,7 +69,8 @@ ShallowWrapper {
             <h6
               className="text-left"
             >
-               Summary: 
+              Summary
+              : 
             </h6>
             <table
               className="table table-bordered bulk-table"
@@ -76,7 +80,8 @@ ShallowWrapper {
                   <th
                     className="text-left"
                   >
-                    Total MSISDNs/IMSIs
+                    Total
+                     MSISDNs/IMSIs
                   </th>
                   <td>
                     1
@@ -88,7 +93,8 @@ ShallowWrapper {
                   <th
                     className="text-left"
                   >
-                    Invalid MSISDNs/IMSIs
+                    Invalid
+                     MSISDNs/IMSIs
                   </th>
                   <td>
                     1
@@ -106,7 +112,8 @@ ShallowWrapper {
                   <th
                     className="text-left"
                   >
-                    Valid MSISDNs/IMSIs
+                    Valid
+                     MSISDNs/IMSIs
                   </th>
                   <td>
                     0
@@ -133,11 +140,14 @@ ShallowWrapper {
             />
           </div>,
           <h4>
-            File has been 
+            File has been
+             
             <span>
               Uploaded
             </span>
-             successfully.
+             
+            successfully
+            .
           </h4>,
           <div
             className="msg row justify-content-center"
@@ -148,7 +158,8 @@ ShallowWrapper {
               <h6
                 className="text-left"
               >
-                 Summary: 
+                Summary
+                : 
               </h6>
               <table
                 className="table table-bordered bulk-table"
@@ -158,7 +169,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Total MSISDNs/IMSIs
+                      Total
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -170,7 +182,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Invalid MSISDNs/IMSIs
+                      Invalid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -188,7 +201,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Valid MSISDNs/IMSIs
+                      Valid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       0
@@ -233,16 +247,20 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              "File has been ",
+              "File has been",
+              " ",
               <span>
                 Uploaded
               </span>,
-              " successfully.",
+              " ",
+              "successfully",
+              ".",
             ],
           },
           "ref": null,
           "rendered": Array [
-            "File has been ",
+            "File has been",
+            " ",
             Object {
               "instance": null,
               "key": undefined,
@@ -254,7 +272,9 @@ ShallowWrapper {
               "rendered": "Uploaded",
               "type": "span",
             },
-            " successfully.",
+            " ",
+            "successfully",
+            ".",
           ],
           "type": "h4",
         },
@@ -269,7 +289,8 @@ ShallowWrapper {
               <h6
                 className="text-left"
               >
-                 Summary: 
+                Summary
+                : 
               </h6>
               <table
                 className="table table-bordered bulk-table"
@@ -279,7 +300,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Total MSISDNs/IMSIs
+                      Total
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -291,7 +313,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Invalid MSISDNs/IMSIs
+                      Invalid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -309,7 +332,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Valid MSISDNs/IMSIs
+                      Valid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       0
@@ -330,7 +354,8 @@ ShallowWrapper {
                 <h6
                   className="text-left"
                 >
-                   Summary: 
+                  Summary
+                  : 
                 </h6>,
                 <table
                   className="table table-bordered bulk-table"
@@ -340,7 +365,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Total MSISDNs/IMSIs
+                        Total
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -352,7 +378,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Invalid MSISDNs/IMSIs
+                        Invalid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -370,7 +397,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Valid MSISDNs/IMSIs
+                        Valid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         0
@@ -388,11 +416,17 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": " Summary: ",
+                  "children": Array [
+                    "Summary",
+                    ": ",
+                  ],
                   "className": "text-left",
                 },
                 "ref": null,
-                "rendered": " Summary: ",
+                "rendered": Array [
+                  "Summary",
+                  ": ",
+                ],
                 "type": "h6",
               },
               Object {
@@ -405,7 +439,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Total MSISDNs/IMSIs
+                        Total
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -417,7 +452,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Invalid MSISDNs/IMSIs
+                        Invalid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -435,7 +471,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Valid MSISDNs/IMSIs
+                        Valid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         0
@@ -455,7 +492,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Total MSISDNs/IMSIs
+                          Total
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -467,7 +505,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Invalid MSISDNs/IMSIs
+                          Invalid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -485,7 +524,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Valid MSISDNs/IMSIs
+                          Valid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           0
@@ -504,7 +544,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Total MSISDNs/IMSIs
+                            Total
+                             MSISDNs/IMSIs
                           </th>,
                           <td>
                             1
@@ -518,11 +559,17 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Total MSISDNs/IMSIs",
+                            "children": Array [
+                              "Total",
+                              " MSISDNs/IMSIs",
+                            ],
                             "className": "text-left",
                           },
                           "ref": null,
-                          "rendered": "Total MSISDNs/IMSIs",
+                          "rendered": Array [
+                            "Total",
+                            " MSISDNs/IMSIs",
+                          ],
                           "type": "th",
                         },
                         Object {
@@ -548,7 +595,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Invalid MSISDNs/IMSIs
+                            Invalid
+                             MSISDNs/IMSIs
                           </th>,
                           <td>
                             1
@@ -571,11 +619,17 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Invalid MSISDNs/IMSIs",
+                            "children": Array [
+                              "Invalid",
+                              " MSISDNs/IMSIs",
+                            ],
                             "className": "text-left",
                           },
                           "ref": null,
-                          "rendered": "Invalid MSISDNs/IMSIs",
+                          "rendered": Array [
+                            "Invalid",
+                            " MSISDNs/IMSIs",
+                          ],
                           "type": "th",
                         },
                         Object {
@@ -636,7 +690,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Valid MSISDNs/IMSIs
+                            Valid
+                             MSISDNs/IMSIs
                           </th>,
                           <td>
                             0
@@ -650,11 +705,17 @@ ShallowWrapper {
                           "key": undefined,
                           "nodeType": "host",
                           "props": Object {
-                            "children": "Valid MSISDNs/IMSIs",
+                            "children": Array [
+                              "Valid",
+                              " MSISDNs/IMSIs",
+                            ],
                             "className": "text-left",
                           },
                           "ref": null,
-                          "rendered": "Valid MSISDNs/IMSIs",
+                          "rendered": Array [
+                            "Valid",
+                            " MSISDNs/IMSIs",
+                          ],
                           "type": "th",
                         },
                         Object {
@@ -703,11 +764,14 @@ ShallowWrapper {
             />
           </div>
           <h4>
-            File has been 
+            File has been
+             
             <span>
               Uploaded
             </span>
-             successfully.
+             
+            successfully
+            .
           </h4>
           <div
             className="msg row justify-content-center"
@@ -718,7 +782,8 @@ ShallowWrapper {
               <h6
                 className="text-left"
               >
-                 Summary: 
+                Summary
+                : 
               </h6>
               <table
                 className="table table-bordered bulk-table"
@@ -728,7 +793,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Total MSISDNs/IMSIs
+                      Total
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -740,7 +806,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Invalid MSISDNs/IMSIs
+                      Invalid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       1
@@ -758,7 +825,8 @@ ShallowWrapper {
                     <th
                       className="text-left"
                     >
-                      Valid MSISDNs/IMSIs
+                      Valid
+                       MSISDNs/IMSIs
                     </th>
                     <td>
                       0
@@ -785,11 +853,14 @@ ShallowWrapper {
               />
             </div>,
             <h4>
-              File has been 
+              File has been
+               
               <span>
                 Uploaded
               </span>
-               successfully.
+               
+              successfully
+              .
             </h4>,
             <div
               className="msg row justify-content-center"
@@ -800,7 +871,8 @@ ShallowWrapper {
                 <h6
                   className="text-left"
                 >
-                   Summary: 
+                  Summary
+                  : 
                 </h6>
                 <table
                   className="table table-bordered bulk-table"
@@ -810,7 +882,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Total MSISDNs/IMSIs
+                        Total
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -822,7 +895,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Invalid MSISDNs/IMSIs
+                        Invalid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -840,7 +914,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Valid MSISDNs/IMSIs
+                        Valid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         0
@@ -885,16 +960,20 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                "File has been ",
+                "File has been",
+                " ",
                 <span>
                   Uploaded
                 </span>,
-                " successfully.",
+                " ",
+                "successfully",
+                ".",
               ],
             },
             "ref": null,
             "rendered": Array [
-              "File has been ",
+              "File has been",
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
@@ -906,7 +985,9 @@ ShallowWrapper {
                 "rendered": "Uploaded",
                 "type": "span",
               },
-              " successfully.",
+              " ",
+              "successfully",
+              ".",
             ],
             "type": "h4",
           },
@@ -921,7 +1002,8 @@ ShallowWrapper {
                 <h6
                   className="text-left"
                 >
-                   Summary: 
+                  Summary
+                  : 
                 </h6>
                 <table
                   className="table table-bordered bulk-table"
@@ -931,7 +1013,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Total MSISDNs/IMSIs
+                        Total
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -943,7 +1026,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Invalid MSISDNs/IMSIs
+                        Invalid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         1
@@ -961,7 +1045,8 @@ ShallowWrapper {
                       <th
                         className="text-left"
                       >
-                        Valid MSISDNs/IMSIs
+                        Valid
+                         MSISDNs/IMSIs
                       </th>
                       <td>
                         0
@@ -982,7 +1067,8 @@ ShallowWrapper {
                   <h6
                     className="text-left"
                   >
-                     Summary: 
+                    Summary
+                    : 
                   </h6>,
                   <table
                     className="table table-bordered bulk-table"
@@ -992,7 +1078,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Total MSISDNs/IMSIs
+                          Total
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -1004,7 +1091,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Invalid MSISDNs/IMSIs
+                          Invalid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -1022,7 +1110,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Valid MSISDNs/IMSIs
+                          Valid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           0
@@ -1040,11 +1129,17 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": " Summary: ",
+                    "children": Array [
+                      "Summary",
+                      ": ",
+                    ],
                     "className": "text-left",
                   },
                   "ref": null,
-                  "rendered": " Summary: ",
+                  "rendered": Array [
+                    "Summary",
+                    ": ",
+                  ],
                   "type": "h6",
                 },
                 Object {
@@ -1057,7 +1152,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Total MSISDNs/IMSIs
+                          Total
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -1069,7 +1165,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Invalid MSISDNs/IMSIs
+                          Invalid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           1
@@ -1087,7 +1184,8 @@ ShallowWrapper {
                         <th
                           className="text-left"
                         >
-                          Valid MSISDNs/IMSIs
+                          Valid
+                           MSISDNs/IMSIs
                         </th>
                         <td>
                           0
@@ -1107,7 +1205,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Total MSISDNs/IMSIs
+                            Total
+                             MSISDNs/IMSIs
                           </th>
                           <td>
                             1
@@ -1119,7 +1218,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Invalid MSISDNs/IMSIs
+                            Invalid
+                             MSISDNs/IMSIs
                           </th>
                           <td>
                             1
@@ -1137,7 +1237,8 @@ ShallowWrapper {
                           <th
                             className="text-left"
                           >
-                            Valid MSISDNs/IMSIs
+                            Valid
+                             MSISDNs/IMSIs
                           </th>
                           <td>
                             0
@@ -1156,7 +1257,8 @@ ShallowWrapper {
                             <th
                               className="text-left"
                             >
-                              Total MSISDNs/IMSIs
+                              Total
+                               MSISDNs/IMSIs
                             </th>,
                             <td>
                               1
@@ -1170,11 +1272,17 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": "Total MSISDNs/IMSIs",
+                              "children": Array [
+                                "Total",
+                                " MSISDNs/IMSIs",
+                              ],
                               "className": "text-left",
                             },
                             "ref": null,
-                            "rendered": "Total MSISDNs/IMSIs",
+                            "rendered": Array [
+                              "Total",
+                              " MSISDNs/IMSIs",
+                            ],
                             "type": "th",
                           },
                           Object {
@@ -1200,7 +1308,8 @@ ShallowWrapper {
                             <th
                               className="text-left"
                             >
-                              Invalid MSISDNs/IMSIs
+                              Invalid
+                               MSISDNs/IMSIs
                             </th>,
                             <td>
                               1
@@ -1223,11 +1332,17 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": "Invalid MSISDNs/IMSIs",
+                              "children": Array [
+                                "Invalid",
+                                " MSISDNs/IMSIs",
+                              ],
                               "className": "text-left",
                             },
                             "ref": null,
-                            "rendered": "Invalid MSISDNs/IMSIs",
+                            "rendered": Array [
+                              "Invalid",
+                              " MSISDNs/IMSIs",
+                            ],
                             "type": "th",
                           },
                           Object {
@@ -1288,7 +1403,8 @@ ShallowWrapper {
                             <th
                               className="text-left"
                             >
-                              Valid MSISDNs/IMSIs
+                              Valid
+                               MSISDNs/IMSIs
                             </th>,
                             <td>
                               0
@@ -1302,11 +1418,17 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": "Valid MSISDNs/IMSIs",
+                              "children": Array [
+                                "Valid",
+                                " MSISDNs/IMSIs",
+                              ],
                               "className": "text-left",
                             },
                             "ref": null,
-                            "rendered": "Valid MSISDNs/IMSIs",
+                            "rendered": Array [
+                              "Valid",
+                              " MSISDNs/IMSIs",
+                            ],
                             "type": "th",
                           },
                           Object {

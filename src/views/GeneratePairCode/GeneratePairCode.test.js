@@ -1,13 +1,56 @@
 /*
-Copyright (c) 2018 Qualcomm Technologies, Inc.
+SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
 All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+   - Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+   - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+   - All advertising materials mentioning features or use of this software,
+   or any deployment of this software, or documentation accompanying any
+   distribution of this software, must display the trademark/logo as per the
+   details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+   contributors may be used to endorse or promote products derived from this
+   software without specific prior written permission.
 
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+   - The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software in a
+   product, an acknowledgment is required by displaying the trademark/logo as
+   per the details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Altered source versions must be plainly marked as such, and must not
+   be misrepresented as being the original software.
+   - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 import React from 'react';
@@ -16,6 +59,7 @@ import GeneratePairCode from './GeneratePairCode';
 import MyEnhancedForm from './GeneratePairCode';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './../../i18nTest';
+import I18n from "i18next";
 import mockAxios from 'jest-mock-axios';
 
 const mockInvalidInput = 'XsWcQSL9ohTM0iayfeRZ7jI5o3Vnb9MSS6dd1tnJrr5W3QqZL4zpfKZCNlLDDXuoXktYlx5DNKgQ2' +
@@ -196,8 +240,8 @@ describe('Generate Pair Code component', () => {
     })
 
     //Tests
-    expect(wrapper.find('Formik').state().errors.imeis[0].imei).toEqual("IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]")
-    expect(wrapper.find('Formik').state().errors.imeis[0].reImei).toEqual("IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]")
+    expect(wrapper.find('Formik').state().errors.imeis[0].imei).toEqual(I18n.t('validation.imeiMustContain'))
+    expect(wrapper.find('Formik').state().errors.imeis[0].reImei).toEqual(I18n.t('validation.imeiMustContain'))
 
     //Brand validation
     let brandInput = wrapper.find('input').find({name: "brand"})
@@ -208,7 +252,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.brand).toEqual("Brand must contain characters and a combination of [-._']")
+    expect(wrapper.find('Formik').state().errors.brand).toEqual(I18n.t('validation.brandMustContainCharactersAndACombinationOf'))
 
     brandInput = wrapper.find('input').find({name: "brand"})
     brandInput.simulate('change', {
@@ -218,7 +262,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.brand).toEqual("Brand must be 1000 characters or less")
+    expect(wrapper.find('Formik').state().errors.brand).toEqual(I18n.t('validation.brandMustBe1000CharactersOrLess'))
 
     //Model name
     let modelNameInput = wrapper.find('input').find({name: "model_name"})
@@ -229,7 +273,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.model_name).toEqual("Model Name must contain characters and a combination of [-._']")
+    expect(wrapper.find('Formik').state().errors.model_name).toEqual(I18n.t('validation.modelNameMustContainCharactersAndACombinationOf'))
 
     modelNameInput = wrapper.find('input').find({name: "model_name"})
     modelNameInput.simulate('change', {
@@ -239,7 +283,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.model_name).toEqual("Model Name must be 1000 characters or less")
+    expect(wrapper.find('Formik').state().errors.model_name).toEqual(I18n.t('validation.modelNameMustBe1000CharactersOrLess'))
 
     //Serial number
     let serialNumInput = wrapper.find('input').find({name: "serial_no"})
@@ -250,7 +294,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.serial_no).toEqual("Serial Number must contain characters and a combination of [-._']")
+    expect(wrapper.find('Formik').state().errors.serial_no).toEqual(I18n.t('validation.serialNumberMustContainCharactersAndACombinationOf'))
 
     serialNumInput = wrapper.find('input').find({name: "serial_no"})
     serialNumInput.simulate('change', {
@@ -260,7 +304,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Test
-    expect(wrapper.find('Formik').state().errors.serial_no).toEqual("Serial Number must be 1000 characters or less")
+    expect(wrapper.find('Formik').state().errors.serial_no).toEqual(I18n.t('validation.serialNumberMustBe1000CharactersOrLess'))
 
     //Re type serial number
     serialNumInput = wrapper.find('input').find({name: "serial_no"})
@@ -279,7 +323,7 @@ describe('Generate Pair Code component', () => {
     })
 
     //Test
-    expect(wrapper.find('Formik').state().errors.retype_serial_no).toEqual("Entered Serial Number doesn't match")
+    expect(wrapper.find('Formik').state().errors.retype_serial_no).toEqual(I18n.t('validation.enteredSerialNumberDoesnTMatch'))
 
     //MAC validation
     let macInput = wrapper.find('input').find({name: "mac"})
@@ -298,8 +342,8 @@ describe('Generate Pair Code component', () => {
     })
 
     //Test
-    expect(wrapper.find('Formik').state().errors.mac).toEqual("Invalid format, valid formats are given in description")
-    expect(wrapper.find('Formik').state().errors.retype_mac).toEqual("Entered MAC Address doesn't match")
+    expect(wrapper.find('Formik').state().errors.mac).toEqual(I18n.t('validation.invalidFormatValidFormatsAreGivenInDescription'))
+    expect(wrapper.find('Formik').state().errors.retype_mac).toEqual(I18n.t('validation.enteredMacAddressDoesnTMatch'))
 
     //MSISDN validation
     let msisdnInput = wrapper.find('input').find({name: "ref_msisdn"})
@@ -311,7 +355,7 @@ describe('Generate Pair Code component', () => {
     })
 
     //Test
-    expect(wrapper.find('Formik').state().errors.ref_msisdn).toEqual("Invalid format, valid format is: 3001234567891")
+    expect(wrapper.find('Formik').state().errors.ref_msisdn).toEqual(I18n.t('validation.invalidFormatValidFormatIs3001234567891'))
   })
 
   test('If IMEI dosnt match', () => {
@@ -338,7 +382,7 @@ describe('Generate Pair Code component', () => {
       }
     })
     //Tests
-    expect(wrapper.find('Formik').state().errors.imeis[0].reImei).toEqual("Entered IMEI doesn't match")
+    expect(wrapper.find('Formik').state().errors.imeis[0].reImei).toEqual(I18n.t('validation.enteredImeiDoesnTMatch'))
   })
 
   test('If request register successfully', () => {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import {Helmet} from 'react-helmet';
 import Header from '../../components/Header/';
 import Sidebar from '../../components/Sidebar/';
 import Breadcrumb from '../../components/Breadcrumb/';
@@ -23,12 +24,39 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class Full extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: 'en'
+    }
+    this.changeLanguage = this.changeLanguage.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      lang: localStorage.getItem('i18nextLng')
+    })
+  }
+
+  changeLanguage(lng) {
+    const { i18n } = this.props;
+    i18n.changeLanguage(lng);
+    this.setState({
+      lang: lng
+    })
+  }
+
   render() {
     return (
       <I18n ns="translations">
         {
         (t, { i18n }) => (
       <div className="app">
+        <Helmet>
+          <html lang={this.state.lang} />
+          <title>{i18n.t('title')}</title>
+          <body dir={this.state.lang==='ar'?'rtl':'ltr'} />
+        </Helmet>
         <Header {...this.props} switchLanguage={this.changeLanguage} />
         <div className="app-body">
           <Sidebar {...this.props}/>

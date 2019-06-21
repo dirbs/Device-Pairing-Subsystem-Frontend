@@ -39,6 +39,9 @@ describe('renderInput', () => {
         <Field name="test" component={renderInput} type="text" label="test" placeholder="test" requiredStar />
       </Formik>
     );
+    //console.log(wrapper.debug());
+    //console.log(typeof(requiredStar));
+    //console.log(wrapper)
     expect(wrapper.contains(<span className="text-danger">*</span>)).toBe(true);
   })
 

@@ -19,17 +19,22 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <div>
-          © Copyright 2018 
+          © 
+          Copyright 2018
+           
           <i>
             DIRBS
           </i>
-          . All Rights Reserved.
+          . 
+          All Rights Reserved
+          .
         </div>,
         <div>
           <b>
-            Version: 
+            Version
+            : 
           </b>
-          1.0.0
+          2.0.0
         </div>,
       ],
       "className": "app-footer",
@@ -42,16 +47,22 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            "© Copyright 2018 ",
+            "© ",
+            "Copyright 2018",
+            " ",
             <i>
               DIRBS
             </i>,
-            ". All Rights Reserved.",
+            ". ",
+            "All Rights Reserved",
+            ".",
           ],
         },
         "ref": null,
         "rendered": Array [
-          "© Copyright 2018 ",
+          "© ",
+          "Copyright 2018",
+          " ",
           Object {
             "instance": null,
             "key": undefined,
@@ -63,7 +74,9 @@ ShallowWrapper {
             "rendered": "DIRBS",
             "type": "i",
           },
-          ". All Rights Reserved.",
+          ". ",
+          "All Rights Reserved",
+          ".",
         ],
         "type": "div",
       },
@@ -74,9 +87,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <b>
-              Version: 
+              Version
+              : 
             </b>,
-            "1.0.0",
+            "2.0.0",
           ],
         },
         "ref": null,
@@ -86,13 +100,19 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "Version: ",
+              "children": Array [
+                "Version",
+                ": ",
+              ],
             },
             "ref": null,
-            "rendered": "Version: ",
+            "rendered": Array [
+              "Version",
+              ": ",
+            ],
             "type": "b",
           },
-          "1.0.0",
+          "2.0.0",
         ],
         "type": "div",
       },
@@ -107,17 +127,22 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <div>
-            © Copyright 2018 
+            © 
+            Copyright 2018
+             
             <i>
               DIRBS
             </i>
-            . All Rights Reserved.
+            . 
+            All Rights Reserved
+            .
           </div>,
           <div>
             <b>
-              Version: 
+              Version
+              : 
             </b>
-            1.0.0
+            2.0.0
           </div>,
         ],
         "className": "app-footer",
@@ -130,16 +155,22 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              "© Copyright 2018 ",
+              "© ",
+              "Copyright 2018",
+              " ",
               <i>
                 DIRBS
               </i>,
-              ". All Rights Reserved.",
+              ". ",
+              "All Rights Reserved",
+              ".",
             ],
           },
           "ref": null,
           "rendered": Array [
-            "© Copyright 2018 ",
+            "© ",
+            "Copyright 2018",
+            " ",
             Object {
               "instance": null,
               "key": undefined,
@@ -151,7 +182,9 @@ ShallowWrapper {
               "rendered": "DIRBS",
               "type": "i",
             },
-            ". All Rights Reserved.",
+            ". ",
+            "All Rights Reserved",
+            ".",
           ],
           "type": "div",
         },
@@ -162,9 +195,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <b>
-                Version: 
+                Version
+                : 
               </b>,
-              "1.0.0",
+              "2.0.0",
             ],
           },
           "ref": null,
@@ -174,13 +208,19 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Version: ",
+                "children": Array [
+                  "Version",
+                  ": ",
+                ],
               },
               "ref": null,
-              "rendered": "Version: ",
+              "rendered": Array [
+                "Version",
+                ": ",
+              ],
               "type": "b",
             },
-            "1.0.0",
+            "2.0.0",
           ],
           "type": "div",
         },

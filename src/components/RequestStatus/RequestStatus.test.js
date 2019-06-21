@@ -34,6 +34,7 @@ describe('RequestStatus component', () => {
   /* Test Check class, count html element, text inside DOM */
   test('Check class, count html element, text inside DOM', () => {
       const wrapper = shallow(<RequestStatus location={location} history={historyMock} />);
+      //console.log(wrapper.debug());
       expect(wrapper.find('.submitted').length).toEqual(1);
       expect(wrapper.contains(<i className='fa fa-check'></i>)).toBe(true);
       expect(wrapper.find('h4').find('span').text()).toBe('Registered');

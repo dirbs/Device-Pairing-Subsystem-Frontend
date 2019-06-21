@@ -1,27 +1,72 @@
-/*Copyright (c) 2018 Qualcomm Technologies, Inc.
-  All rights reserved.
+/*
+SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-  Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+   - Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+   - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+   - All advertising materials mentioning features or use of this software,
+   or any deployment of this software, or documentation accompanying any
+   distribution of this software, must display the trademark/logo as per the
+   details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+   contributors may be used to endorse or promote products derived from this
+   software without specific prior written permission.
 
-  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+   - The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software in a
+   product, an acknowledgment is required by displaying the trademark/logo as
+   per the details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Altered source versions must be plainly marked as such, and must not
+   be misrepresented as being the original software.
+   - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
-import {instance, errors, getAuthHeader, matchMedia, getUserRole} from "../../utilities/helpers";
-import {PAGE_LIMIT} from "../../utilities/constants";
+import i18n from 'i18next';
+import {instance, errors, getAuthHeader, getUserRole, SweetAlert} from "../../utilities/helpers";
+import {PAGE_LIMIT,ITEMS_PER_PAGE} from "../../utilities/constants";
 import Pagination from "react-js-pagination";
 import FileSaver from "file-saver";
-import {Row, Col, Button, Form, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Row, Col, Button, Form, ModalHeader, ModalBody, ModalFooter,Input,Label} from 'reactstrap';
 import renderInput from '../../components/Form/RenderInput';
 import {withFormik, Field} from 'formik';
 import RenderModal from '../../components/Form/RenderModal'
 import StepLoading from "../../components/Loaders/StepLoading";
 import {toast} from "react-toastify";
 import DataTableInfo from '../../components/DataTable/DataTableInfo'
-
+import 'react-select/dist/react-select.css';
 /**
  * React Modal Component
  * Double entry input form to add IMSI
@@ -61,11 +106,11 @@ class AddIMSIForm extends Component {
                     <ModalBody>
                       <Row>
                         <Col className='order-md-1' xs={12} md={6} lg={6}>
-                          <Field name="imsi" component={renderInput} type="text" maxlength={15}
+                          <Field name="imsi" component={renderInput} type="text" maxLength={15}
                                  label={t('modal.imsilabel')} placeholder={t('modal.imsiplaceholder')}/>
                         </Col>
                         <Col className='order-md-1' xs={12} md={6} lg={6}>
-                          <Field name="reImsi" component={renderInput} type="text" maxlength={15}
+                          <Field name="reImsi" component={renderInput} type="text" maxLength={15}
                                  label={t('modal.reimsilabel')} placeholder={t('modal.reimsiplaceholder')}/>
                         </Col>
                       </Row>
@@ -103,16 +148,16 @@ export const EnhancedModalForm = withFormik({
   validate: values => {
     let errors = {}
     if (values.imsi === '') {
-      errors.imsi = 'This field is required'
+      errors.imsi = i18n.t('validation.thisFieldIsRequired')
     } else if (isNaN(values.imsi)) {
-      errors.imsi = 'IMSI must be digits only [0-9]'
+      errors.imsi = i18n.t('validation.IMSIMustbeDigits')
     } else if (values.imsi.length < 15) {
-      errors.imsi = 'IMSI length should be 15 digits'
+      errors.imsi = i18n.t('validation.IMSIShouldbeLessThan')
     }
     if (values.reImsi === '') {
-      errors.reImsi = 'This field is required'
+      errors.reImsi = i18n.t('validation.thisFieldIsRequired')
     } else if (values.imsi !== values.reImsi) {
-      errors.reImsi = 'IMSIs does not match'
+      errors.reImsi = i18n.t('validation.IMSIDoesNotMatch')
     }
     return errors;
   },
@@ -150,7 +195,7 @@ class Requests extends Component {
     super(props)
     this.state = {
       mno: '',
-      start: 1,
+      start: 0,
       prevStart: null,
       limit: PAGE_LIMIT,
       activePage: 1,
@@ -159,7 +204,8 @@ class Requests extends Component {
       enableModal: false,
       selectedMsisdn: null,
       countryCode: null,
-      data: null
+      data: null,
+      options: ITEMS_PER_PAGE
     }
     this.handlePageClick = this.handlePageClick.bind(this);
     this.getCases = this.getCases.bind(this);
@@ -168,7 +214,26 @@ class Requests extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
     this.addSingleIMSI = this.addSingleIMSI.bind(this);
+    this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
+
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom - 100 <= window.innerHeight;
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handlePagination);
+  }
+
+  handlePagination = () => {
+    const wrappedElement = document.getElementById('root');
+    if (this.isBottom(wrappedElement)) {
+      document.body.classList.remove('pagination-fixed');
+    } else {
+      document.body.classList.add('pagination-fixed');
+    }
+  };
 
   /**
    * HOC function to update token
@@ -199,7 +264,12 @@ class Requests extends Component {
    * @param page
    */
   handlePageClick(page) {
-    this.setState({start: page, activePage: page, loading: true}, () => {
+    let a1 = 1;
+    let d = this.state.limit;
+    // -1 at the end indicates that start should be always 0 for first page
+   	let start = a1 + d * (page - 1) - 1;
+
+    this.setState({start: start, activePage: page, loading: true}, () => {
       this.updateTokenHOC(this.getCases)
     });
   }
@@ -216,8 +286,36 @@ class Requests extends Component {
         this.setState({
           data: response.data.cases,
           totalCases: response.data.count,
-          countryCode: response.data.Country_Code,
+          countryCode: response.data.country_code,
           loading: false
+        },()=>{
+          let options = []
+          if(this.state.totalCases === 10){
+            options = this.state.options.filter((el)=>{
+              return el.value===10
+            })
+            this.setState({options})
+          } else if (this.state.totalCases > 10 && this.state.totalCases <= 20) {
+            options = this.state.options.filter((el)=>{
+              return el.value<=20
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 20 && this.state.totalCases <= 30){
+            options = this.state.options.filter((el)=>{
+              return el.value<=20
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 30 && this.state.totalCases <= 50){
+            options = this.state.options.filter((el)=>{
+              return el.value<=50
+            })
+            this.setState({options})
+          } else if(this.state.totalCases > 50 && this.state.totalCases <= 100){
+            options = this.state.options.filter((el)=>{
+              return el.value<=100
+            })
+            this.setState({options})
+          }
         });
       })
       .catch(error => {
@@ -282,7 +380,11 @@ class Requests extends Component {
            * fetch data from main component
            */
           this.updateTokenHOC(this.getCases)
-          toast.success(response.data.msg)
+          SweetAlert({
+            title: i18n.t('success'),
+            message: response.data.msg,
+            type: 'success'
+          })
         }
       })
       .catch(error => {
@@ -305,15 +407,28 @@ class Requests extends Component {
       mno: getUserRole(this.props.resources)
     }, () => {
       this.updateTokenHOC(this.getCases)
-    })
+    });
+    document.addEventListener('scroll', this.handlePagination);
+  }
+
+  handleLimitChange = (e) => {
+    e.preventDefault();
+    let limit = parseInt(e.target.value);
+    let currentPage = Math.ceil((this.state.start + 1) / limit);
+    this.setState({limit:limit},()=>{
+      this.handlePageClick(currentPage);
+    });
   }
 
   render() {
-    const {loading} = this.state
+    const {loading,options} = this.state
+    const itemOptions = options.map((item)=>{
+      return <option key={item.value} value={item.value}>{item.label}</option>
+    })
     return (
       <I18n ns="translations">
         {
-          (t, {i18n}) => (
+          (t) => (
             <div className="animated fadeIn steps-loading">
               {loading &&
               <StepLoading/>
@@ -338,7 +453,7 @@ class Requests extends Component {
                     </td>
                   </tr>
                 })) || <tr>
-                  <td className="text-center" colSpan={3}>No requests found</td>
+                  <td className="text-center" colSpan={3}>{t('noRequestFound')}</td>
                 </tr>
                 }
                 </tbody>
@@ -352,36 +467,41 @@ class Requests extends Component {
                 addSingleIMSI={(data) => this.updateTokenHOC(this.addSingleIMSI, data)}
               />
               <div className="react-bs-table-pagination">
-                {
-                  this.state.data &&
+                {this.state.data &&
                   <p>
                     <button className="btn btn-link"
                             onClick={(e) => this.updateTokenHOC(this.downloadRequests, e)}>{t('requests.downloadDocuments')}</button>
                   </p>
                 }
-                <div className="row">
-                  <div className="col-xs-12 col-lg-6 mt-2">
-                    {
-                      this.state.totalCases &&
-                      <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases}
-                                     itemType={'requests'}/>
-                    }
-                  </div>
-                  <div className="col-xs-12 col-lg-6">
-                    { this.state.totalCases > this.state.limit &&
-                      <Pagination
-                        pageRangeDisplayed={matchMedia(1250, 3, 5)}
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={this.state.limit}
-                        totalItemsCount={this.state.totalCases}
-                        onChange={this.handlePageClick}
-                        innerClass="pagination float-right mt-0"
-                      />
-                    }
-                  </div>
-                </div>
               </div>
-              <div className="s-alert-wrapper"></div>
+              {(!loading && this.state.totalCases >= PAGE_LIMIT) &&
+                <article className='data-footer'>
+                  <Pagination
+                    pageRangeDisplayed={window.matchMedia("(max-width: 767px)").matches ? 4 : 10}
+                    activePage={this.state.activePage}
+                    itemsCountPerPage={this.state.limit}
+                    totalItemsCount={this.state.totalCases}
+                    onChange={this.handlePageClick}
+                    innerClass="pagination"
+                  />
+                  <div className="hand-limit">
+                    <Label>{t('show')}</Label>
+                    <div className="selectbox">
+                      <Input value={this.state.limit} onChange={(e) => {
+                        this.handleLimitChange(e)
+                      }}
+                             type="select" name="select">
+                        {itemOptions}
+                      </Input>
+                    </div>
+                    <Label>{t('requests')}</Label>
+                  </div>
+                  <div className='start-toend'>
+                    <DataTableInfo start={this.state.start} limit={this.state.limit} total={this.state.totalCases}
+                                   itemType={t('requests')}/>
+                  </div>
+                </article>
+              }
             </div>
           )
         }

@@ -32,6 +32,7 @@ select::-ms-expand {
 		-moz-transition: all ease 0.5s;
 		-webkit-transition: all ease 0.5s;
 		transition: all ease 0.5s;
+		pointer-events: none;
 		z-index: 2;
 	}
 

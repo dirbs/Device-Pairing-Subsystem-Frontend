@@ -4,6 +4,7 @@ import BulkUpload from './BulkUpload';
 import EnhancedFileForm from './BulkUpload';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './../../i18nTest';
+import I18n from 'i18next';
 import sinon from 'sinon';
 import mockAxios from 'jest-mock-axios';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -118,7 +119,8 @@ describe('Bulk upload module', () => {
     wrapper.find('form').simulate('submit')
 
     //Test
-    expect(wrapper.find('Formik').state().errors.file).toEqual('Invalid file extension, only support "csv"')
+    // console.log(wrapper.find('Formik').state())
+    expect(wrapper.find('Formik').state().errors.file).toEqual(I18n.t('validation.invalideFileExtension'))
 
     //Setting file
     wrapper.find('Formik').setState({
@@ -132,7 +134,8 @@ describe('Bulk upload module', () => {
     wrapper.find('form').simulate('submit')
 
     //Test
-    expect(wrapper.find('Formik').state().errors.file).toEqual('This field is required')
+    // console.log(wrapper.find('Formik').state())
+    expect(wrapper.find('Formik').state().errors.file).toEqual(I18n.t('validation.thisFieldIsRequired'))
 
     //Setting file
     wrapper.find('Formik').setState({
@@ -146,7 +149,7 @@ describe('Bulk upload module', () => {
     wrapper.find('form').simulate('submit')
 
     //Test
-    expect(wrapper.find('Formik').state().errors.file).toEqual('File size limit exceeds from 5MB')
+    expect(wrapper.find('Formik').state().errors.file).toEqual(I18n.t('validation.fileSize'))
   })
   test('if validations runs correctly', () => {
     let pushSpy = Sinon.spy()

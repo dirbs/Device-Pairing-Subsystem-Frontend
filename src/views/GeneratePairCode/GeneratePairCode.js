@@ -1,25 +1,69 @@
 /*
-Copyright (c) 2018 Qualcomm Technologies, Inc.
+SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
 All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+   - Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+   - Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+   - All advertising materials mentioning features or use of this software,
+   or any deployment of this software, or documentation accompanying any
+   distribution of this software, must display the trademark/logo as per the
+   details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+   contributors may be used to endorse or promote products derived from this
+   software without specific prior written permission.
 
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+   - The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software in a
+   product, an acknowledgment is required by displaying the trademark/logo as
+   per the details provided here:
+   https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+   - Altered source versions must be plainly marked as such, and must not
+   be misrepresented as being the original software.
+   - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 import React, {Component} from 'react';
 import {translate} from 'react-i18next';
 import {Row, Col, Button, Form, Card, CardHeader, CardBody} from 'reactstrap';
 import {withFormik, Field, FieldArray} from 'formik';
-import {errors, instance, getAuthHeader} from "../../utilities/helpers";
+import {errors, instance, getAuthHeader, languageCheck} from "../../utilities/helpers";
 import doubleEntryInput from '../../components/Form/DoubleEntryInput'
 import renderInput from '../../components/Form/RenderInput'
 import RenderSelect from '../../components/Form/RenderSelect'
 import {COUNTRY_CODE} from '../../utilities/constants'
 import {toast} from 'react-toastify';
+import i18n from 'i18next';
 
 export function errorClass(errors, touched, i) {
   return (errors &&
@@ -49,17 +93,16 @@ class CaseForm extends Component {
         <Row>
           <Col xs={12} xl={4} className="order-xl-12 mt-3">
             <div>
-              <div className="alert alert-info mb-2"><b> Device IMEI(s):</b>
+              <div className="alert alert-info mb-2"><b>{i18n.t('deviceImeiS')}:</b>
                 <ul>
-                  <li>IMEI can contain alphanumeric characters (0-9, A-F). The length of the IMEI should be between
-                    14-16 characters.
+                  <li>{i18n.t('IMEIDeviceInfoOne')}
                   </li>
-                  <li>In a single request up to 5 IMEI numbers can be added.</li>
+                  <li>{i18n.t('IMEIDeviceInfoTwo')}</li>
                 </ul>
               </div>
-              <div className="alert alert-info"><b> Mac (Wi-Fi) Address:</b>
+              <div className="alert alert-info"><b> {i18n.t('macWiFiAddress')}:</b>
                 <ul>
-                  <li>MAC addresses are 6-byte (48 bits) in length, and are written in the following formats:
+                  <li>{i18n.t('MACInfoOne')}:
                     <ul>
                       <li>A2:C9:66:F8:47:C5</li>
                       <li>A2-C9-66-F8-47-C5</li>
@@ -74,7 +117,7 @@ class CaseForm extends Component {
           </Col>
           <Col xs={12} xl={8} className="order-xl-1 mt-3">
             <Card>
-              <CardHeader><b>Device IMEI(s)</b></CardHeader>
+              <CardHeader><b>{i18n.t('deviceImeiS')}</b></CardHeader>
               <CardBody>
                 <div className="add-remove-wrap position-relative">
                   <FieldArray
@@ -88,8 +131,8 @@ class CaseForm extends Component {
                             return (
                               <Row key={i} className="mt-3">
                                 <Col xs={6}>
-                                  <Field name={`imeis[${i}].imei`} component={doubleEntryInput} label="Type IMEI"
-                                         type="text" placeholder={`Type IMEI ${i + 1}`} requiredStar groupClass="mb-0"
+                                  <Field name={`imeis[${i}].imei`} component={doubleEntryInput} label={i18n.t('typeImei')}
+                                         type="text" placeholder={i18n.t('typeImei') + ' ' + (i + 1)} requiredStar groupClass="mb-0"
                                          inputClass={inputClass}/>
                                   {errors &&
                                   errors.imeis &&
@@ -106,8 +149,8 @@ class CaseForm extends Component {
                                 </Col>
                                 <Col xs={6}>
                                   <div className="buttonbox">
-                                    <Field name={`imeis[${i}].reImei`} component={doubleEntryInput} label="Retype IMEI"
-                                           type="text" placeholder={`Retype IMEI ${i + 1}`} requiredStar
+                                    <Field name={`imeis[${i}].reImei`} component={doubleEntryInput} label={i18n.t('retypeImei')}
+                                           type="text" placeholder={i18n.t('retypeImei') + ' ' + (i + 1)} requiredStar
                                            groupClass="mb-0" inputClass={reInputClass}/>
                                     {errors &&
                                     errors.imeis &&
@@ -137,7 +180,7 @@ class CaseForm extends Component {
                             onClick={() => push({imei: "", reImei: ""})}
                             disabled={values.imeis.length >= 5}
                           >
-                            Add IMEIs
+                              {i18n.t('addImeIs')}
                           </Button>
                         </div>
                       )
@@ -147,39 +190,39 @@ class CaseForm extends Component {
               </CardBody>
             </Card>
             <Card>
-              <CardHeader><b>Device Identifiers</b></CardHeader>
+              <CardHeader><b>{i18n.t('deviceIdentifiers')}</b></CardHeader>
               <CardBody>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="serial_no" component={doubleEntryInput} label="Serial number" type="text"
-                           placeholder="Serial number" requiredStar maxLength={1000}/>
+                    <Field name="serial_no" component={doubleEntryInput} label={i18n.t('serialNumber')} type="text"
+                           placeholder={i18n.t('serialNumber')} requiredStar maxLength={1000}/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="retype_serial_no" component={doubleEntryInput} label="Retype Serial number" type="text"
-                           placeholder="Retype Serial number" requiredStar maxLength={1000}/>
+                    <Field name="retype_serial_no" component={doubleEntryInput} label={i18n.t('retypeSerialNumber')} type="text"
+                           placeholder={i18n.t('retypeSerialNumber')} requiredStar maxLength={1000}/>
                   </Col>
                 </Row>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="brand" component={renderInput} label="Brand" type="text" placeholder="Brand"
+                    <Field name="brand" component={renderInput} label={i18n.t('brand')} type="text" placeholder={i18n.t('brand')}
                            requiredStar/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="model_name" component={renderInput} label="Model Name" type="text"
-                           placeholder="Model Name" requiredStar/>
+                    <Field name="model_name" component={renderInput} label={i18n.t('modelName')} type="text"
+                           placeholder={i18n.t('modelName')} requiredStar/>
                   </Col>
                 </Row>
 
                 <Row>
                   <Col xs={12} sm={6}>
-                    <Field name="mac" component={doubleEntryInput} label="MAC (Wi-Fi) address" type="text"
-                           placeholder="MAC (Wi-Fi) address" maxLength={23}/>
+                    <Field name="mac" component={doubleEntryInput} label={i18n.t('macWiFiAddress')} type="text"
+                           placeholder={i18n.t('macWiFiAddress')} maxLength={23}/>
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="retype_mac" component={doubleEntryInput} label="Retype MAC (Wi-Fi) address" type="text"
-                           placeholder="Retype MAC (Wi-Fi) address" maxLength={23}/>
+                    <Field name="retype_mac" component={doubleEntryInput} label={i18n.t('retypeMacWiFiAddress')} type="text"
+                           placeholder={i18n.t('retypeMacWiFiAddress')} maxLength={23}/>
                   </Col>
                 </Row>
 
@@ -196,16 +239,16 @@ class CaseForm extends Component {
                       error={errors.technologies}
                       touched={touched.technologies}
                       fieldName="technologies"
-                      label="Radio Access Technologies"
-                      placeholder="Select Technologies"
+                      label={i18n.t('radioAccessTechnologies')}
+                      placeholder={i18n.t('selectTechnologies')}
                       requiredStar
                       stayOpen={true}
                       multi={true}
                     />
                   </Col>
                   <Col xs={12} sm={6}>
-                    <Field name="ref_msisdn" component={renderInput} label="Reference MSISDN" type="text"
-                           placeholder="Reference MSISDN" requiredStar maxLength={15} groupClass="prefix-group"
+                    <Field name="ref_msisdn" component={renderInput} label={i18n.t('referenceMsisdn')} type="text"
+                           placeholder={i18n.t('referenceMsisdn')} requiredStar maxLength={15} groupClass="prefix-group"
                            prefix={COUNTRY_CODE}/>
                   </Col>
                 </Row>
@@ -214,7 +257,7 @@ class CaseForm extends Component {
             </Card>
             <div className="text-right">
               <Button color="primary" type="submit" className="btn-next-prev" disabled={isSubmitting}
-                      role="button">Submit</Button>
+                      role="button">{i18n.t('submit')}</Button>
             </div>
           </Col>
         </Row>
@@ -251,17 +294,17 @@ const MyEnhancedForm = withFormik({
 
 
         if (!values.imeis[i].imei) {
-          errors.imeis[i].imei = 'This field is required'
+          errors.imeis[i].imei = i18n.t('validation.thisFieldIsRequired')
         } else if (!/^(?=.[A-F]*)(?=.[0-9]*)[A-F0-9]{14,16}$/.test(values.imeis[i].imei)) {
-          errors.imeis[i].imei = 'IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]'
+          errors.imeis[i].imei = i18n.t('validation.imeiMustContain')
         }
 
         if (!values.imeis[i].reImei) {
-          errors.imeis[i].reImei = 'This field is required'
+          errors.imeis[i].reImei = i18n.t('validation.thisFieldIsRequired')
         } else if (!/^(?=.[A-F]*)(?=.[0-9]*)[A-F0-9]{14,16}$/.test(values.imeis[i].reImei)) {
-          errors.imeis[i].reImei = 'IMEI must contain 14 to 16 characters and contains a combination of [0-9] and [A-F]'
+          errors.imeis[i].reImei = i18n.t('validation.imeiMustContain')
         } else if (values.imeis[i].imei !== values.imeis[i].reImei) {
-          errors.imeis[i].reImei = 'Entered IMEI doesn\'t match'
+          errors.imeis[i].reImei = i18n.t('validation.enteredImeiDoesnTMatch')
         }
         if (values.imeis[i].imei.length > 0) {
           imeis.push(values.imeis[i].imei)
@@ -280,52 +323,58 @@ const MyEnhancedForm = withFormik({
     }
 
     if (!values.brand) {
-      errors.brand = 'This field is Required'
-    } else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.brand)) {
-      errors.brand = 'Brand must contain characters and a combination of [-._\']'
+      errors.brand = i18n.t('validation.thisFieldIsRequired')
+    }else if (languageCheck(values.brand) === false && !/[-& ]/g.test(values.brand)){
+      errors.brand = i18n.t('validation.langError')
+    }
+    else if (!/^([a-zA-Z &-])([a-zA-Z 0-9 &-])*$/i.test(values.brand)) {
+      errors.brand = i18n.t('validation.brandMustContainCharactersAndACombinationOf')
     } else if (values.brand.length >= 1000) {
-      errors.brand = 'Brand must be 1000 characters or less'
+      errors.brand = i18n.t('validation.brandMustBe1000CharactersOrLess')
     }
     if (!values.model_name) {
-      errors.model_name = 'This field is Required'
-    } else if (!/^([a-zA-Z])([a-zA-Z 0-9.'_-])*$/i.test(values.model_name)) {
-      errors.model_name = 'Model Name must contain characters and a combination of [-._\']'
+      errors.model_name = i18n.t('validation.thisFieldIsRequired')
+    }else if (languageCheck(values.model_name) === false && !/[-() ]/g.test(values.model_name)){
+      errors.model_name = i18n.t('validation.langError')
+    }
+    else if (!/^([a-zA-Z ()'-])([a-zA-Z 0-9 ()'-])*$/i.test(values.model_name) ) {
+      errors.model_name = i18n.t('validation.modelNameMustContainCharactersAndACombinationOf')
     } else if (values.model_name.length >= 1000) {
-      errors.model_name = 'Model Name must be 1000 characters or less'
+      errors.model_name = i18n.t('validation.modelNameMustBe1000CharactersOrLess')
     }
 
     if (!values.serial_no) {
-      errors.serial_no = 'This field is Required'
+      errors.serial_no = i18n.t('validation.thisFieldIsRequired')
     } else if (!/^([a-zA-Z0-9])([a-zA-Z 0-9.'_-])*$/i.test(values.serial_no)) {
-      errors.serial_no = 'Serial Number must contain characters and a combination of [-._\']'
+      errors.serial_no = i18n.t('validation.serialNumberMustContainCharactersAndACombinationOf')
     } else if (values.serial_no.length >= 1000) {
-      errors.serial_no = 'Serial Number must be 1000 characters or less'
+      errors.serial_no = i18n.t('validation.serialNumberMustBe1000CharactersOrLess')
     }
 
     if (!values.retype_serial_no) {
-      errors.retype_serial_no = 'This field is Required'
+      errors.retype_serial_no = i18n.t('validation.thisFieldIsRequired')
     } else if (values.serial_no !== values.retype_serial_no) {
-      errors.retype_serial_no = 'Entered Serial Number doesn\'t match'
+      errors.retype_serial_no = i18n.t('validation.enteredSerialNumberDoesnTMatch')
     }
 
     if (!values.mac) {
 
     } else if (!/^([0-9A-F]{2,4}[.:-]){3,7}([0-9A-F]{2,4})$/i.test(values.mac)) {
-      errors.mac = 'Invalid format, valid formats are given in description'
+      errors.mac = i18n.t('validation.invalidFormatValidFormatsAreGivenInDescription')
     }
 
     if (values.mac !== values.retype_mac) {
-      errors.retype_mac = 'Entered MAC Address doesn\'t match'
+      errors.retype_mac = i18n.t('validation.enteredMacAddressDoesnTMatch')
     }
 
     if (!values.technologies || !values.technologies.length) {
-      errors.technologies = 'This field is Required'
+      errors.technologies = i18n.t('validation.thisFieldIsRequired')
     }
 
     if (!values.ref_msisdn) {
-      errors.ref_msisdn = 'This field is Required'
+      errors.ref_msisdn = i18n.t('validation.thisFieldIsRequired')
     } else if (!/^([0-9]{1,11})$/i.test(values.ref_msisdn)) {
-      errors.ref_msisdn = 'Invalid format, valid format is: 3001234567891'
+      errors.ref_msisdn = i18n.t('validation.invalidFormatValidFormatIs3001234567891')
     }
 
     return errors;
@@ -418,7 +467,7 @@ class GeneratePairCode extends Component {
           const statusDetails = {
             id: response.data.pair_code,
             icon: 'fa fa-check',
-            action: 'Registered',
+            action: i18n.t('registered'),
             showButton: false,
             link: null
           }
@@ -427,11 +476,12 @@ class GeneratePairCode extends Component {
             state: {details: statusDetails}
           });
         } else {
-          toast.error('something went wrong');
+          toast.error(i18n.t('wentWrong'));
         }
       })
       .catch(error => {
         errors(this, error);
+        console.log(error);
       })
   }
 

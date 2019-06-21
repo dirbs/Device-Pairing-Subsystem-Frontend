@@ -53,66 +53,18 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import React, { Component } from 'react';
-import Header from '../../components/Header/';
-import Footer from '../../components/Footer/';
-import { I18n, translate } from 'react-i18next';
-import settings from './../../settings';
+import React from 'react';
 
-/**
- * This Stateful component generates 401 page for unauthorized user. i.e. Keycloak user who doesn't have access to this system.
- * Also it provides user with contact details.
- */
-class Page401 extends Component {
-    constructor(props) {
-        super(props);
-        this.changeLanguage = this.changeLanguage.bind(this);
-    }
-    changeLanguage(lng) {
-        const { i18n } = this.props;
-        i18n.changeLanguage(lng);
-    }
+const SearchFilters = props =>
+  <ul className='selected-filters'>
+    {props.filters.length>0 && props.filters.map((val,i)=>{
+		return <li key={i}>
+      		<div>
+        		<span>{val.filterName}: <b>{val.value}</b></span>
+        		<button onClick={(e)=>props.handleReset(e,val.filter)}><i className='fa fa-close'></i></button>
+    		</div>
+        </li>
+    })}
+  </ul>
 
-    componentDidMount() {
-        document.body.classList.remove('sidebar-fixed');
-        document.body.classList.remove('aside-menu-fixed');
-        document.body.classList.remove('aside-menu-hidden');
-        this.props.history.push('/unauthorized-access');
-    }
-    render() {
-        const {supportEmail, supportNumber} = settings.appDetails;
-        return (
-            <I18n ns="translations">
-            {
-                (t, { i18n }) => (
-                    <div className="app header-fixed">
-                        <Header {...this.props} switchLanguage={this.changeLanguage} />
-                        <div className="app-body">
-                            <main className="main p401">
-                                <div className="container-fluid">
-                                    <div className="text-center">
-                                        <h1><b>401</b></h1>
-                                        <h2>Unauthorized Page</h2>
-                                        <h6><b>Contact Administrator</b></h6>
-                                        <div className="inline-support">
-                                            <ul>
-                                                <li><b>Email:&nbsp;&nbsp;</b>{supportEmail}</li>
-                                            </ul>
-                                            <ul>
-                                                <li><b>Phone:&nbsp;&nbsp;</b>{supportNumber}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </main>
-                        </div>
-                        <Footer />
-                    </div>
-                )
-            }
-            </I18n>
-        )
-    }
-}
-
-export default translate('translations')(Page401);
+export default SearchFilters;

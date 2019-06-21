@@ -18,10 +18,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        "Showing ",
+        "Showing",
+        " ",
         <span>
           NaN
-           to 
+           
+          to
+           
           NaN
         </span>,
         " of ",
@@ -33,7 +36,8 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": Array [
-      "Showing ",
+      "Showing",
+      " ",
       Object {
         "instance": null,
         "key": undefined,
@@ -41,14 +45,18 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             NaN,
-            " to ",
+            " ",
+            "to",
+            " ",
             NaN,
           ],
         },
         "ref": null,
         "rendered": Array [
           NaN,
-          " to ",
+          " ",
+          "to",
+          " ",
           NaN,
         ],
         "type": "span",
@@ -77,10 +85,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          "Showing ",
+          "Showing",
+          " ",
           <span>
             NaN
-             to 
+             
+            to
+             
             NaN
           </span>,
           " of ",
@@ -92,7 +103,8 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": Array [
-        "Showing ",
+        "Showing",
+        " ",
         Object {
           "instance": null,
           "key": undefined,
@@ -100,14 +112,18 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               NaN,
-              " to ",
+              " ",
+              "to",
+              " ",
               NaN,
             ],
           },
           "ref": null,
           "rendered": Array [
             NaN,
-            " to ",
+            " ",
+            "to",
+            " ",
             NaN,
           ],
           "type": "span",
