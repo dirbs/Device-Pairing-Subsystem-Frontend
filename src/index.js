@@ -60,7 +60,7 @@ let kc = Keycloak({
  * Code below adds Keycloak functionality and redirect loggedin user to either Application or 401 Authorized Page.
  * It uses keycloak.json configuration file downloaded from Keycloak.
  */
-kc.init({onLoad: 'login-required'}).success(authenticated => {
+kc.init({onLoad: 'login-required', "checkLoginIframe" : false }).success(authenticated => {
 	if (authenticated) {
 		localStorage.setItem('token', kc.token);
         let tokenDetails = decode(kc.token)
